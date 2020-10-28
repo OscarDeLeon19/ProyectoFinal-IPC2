@@ -6,10 +6,6 @@ import acciones_usuarios.DM_Cajero;
 import acciones_usuarios.DM_Cliente;
 import acciones_usuarios.DM_Gerente;
 import java.io.File;
-import java.io.InputStream;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
@@ -24,7 +20,7 @@ import usuarios.Cajero;
 import usuarios.Cliente;
 import usuarios.Gerente;
 
-public class Funcion {
+public class Carga {
 
     DM_Cajero dmcaj = new DM_Cajero();
     DM_Cliente dmcli = new DM_Cliente();
@@ -33,7 +29,7 @@ public class Funcion {
     DM_Transaccion dmtra = new DM_Transaccion();
     private ArrayList<String> mesajes = new ArrayList<>();
 
-    public Funcion() {
+    public Carga() {
     }
 
     public ArrayList<String> getMesajes() {
@@ -126,7 +122,7 @@ public class Funcion {
                                     NodeList c = cuenta.getChildNodes();
                                     String code = c.item(1).getTextContent();
                                     String creacion = c.item(3).getTextContent();
-                                    String credito = c.item(1).getTextContent();
+                                    String credito = c.item(5).getTextContent();
                                     Cuenta nCuenta = new Cuenta(code, Date.valueOf(creacion), Integer.parseInt(credito), codigo);
                                     String ms = dmcue.agregarCuenta(nCuenta);
                                     mesajes.add(ms);

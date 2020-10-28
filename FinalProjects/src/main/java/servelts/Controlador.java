@@ -5,6 +5,10 @@
  */
 package servelts;
 
+import acciones_servicios.DM_Cuenta;
+import acciones_usuarios.DM_Cajero;
+import acciones_usuarios.DM_Cliente;
+import acciones_usuarios.DM_Gerente;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,14 +20,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import principal.Funcion;
+import principal.Carga;
+import usuarios.Gerente;
 
 /**
  *
  * @author oscar19
  */
 public class Controlador extends HttpServlet {
-    
+
+    DM_Cajero dmcaj = new DM_Cajero();
+    DM_Cliente dmcli = new DM_Cliente();
+    DM_Gerente dmgen = new DM_Gerente();
+    DM_Cuenta dmcue = new DM_Cuenta();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -41,7 +51,7 @@ public class Controlador extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Controlador</title>");            
+            out.println("<title>Servlet Controlador</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Controlador at " + request.getContextPath() + "</h1>");
@@ -62,7 +72,20 @@ public class Controlador extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String acceder = "";
+        String accion = request.getParameter("accion");
+        if (accion.equalsIgnoreCase("Salir")) {
+            request.getSession().setAttribute("error", null);
+            acceder = "index.jsp";
+        } else if (accion.equalsIgnoreCase("FuncionesG")) {
+            acceder = "gerente/funciones.jsp";
+        } else if (accion.equalsIgnoreCase("PrimeroG")) {
+            acceder = "gerente/interfaz.jsp";
+        } else if (accion.equalsIgnoreCase("ReportesG")) {
+            acceder = "gerente/reportes.jsp";
+        }
+        RequestDispatcher pagina = request.getRequestDispatcher(acceder);
+        pagina.forward(request, response);
     }
 
     /**
@@ -79,14 +102,27 @@ public class Controlador extends HttpServlet {
         String acceder = "";
         String accion = request.getParameter("accion");
         if (accion.equalsIgnoreCase("Subir")) {
-            Funcion funcion = new Funcion();
+            Carga funcion = new Carga();
             String fichero = request.getParameter("dataxml");
             File file = new File(fichero);
             funcion.ingresarDatos(file);
             ArrayList mensajes = funcion.getMesajes();
             request.setAttribute("lista", mensajes);
             acceder = "datos.jsp";
-        } 
+        } else if (accion.equalsIgnoreCase("Acceso Gerente")) {
+            String codigo = request.getParameter("txcodigo");
+            String contraseña = request.getParameter("pass");
+            Gerente gerente = dmgen.ingresarGerente(codigo, contraseña);
+            if (gerente != null) {
+                request.getSession().setAttribute("login_gerente", gerente);
+                acceder = "gerente/interfaz.jsp";
+            } else {
+                String mensaje = "Codigo o contraseña incorrecta";
+                request.getSession().setAttribute("error", mensaje);
+                acceder = "index.jsp";
+
+            }
+        }
         RequestDispatcher pagina = request.getRequestDispatcher(acceder);
         pagina.forward(request, response);
     }
