@@ -18,7 +18,7 @@ public class DM_Historial {
     public void AgregarHistorial(Historial historial) {
         try {
             PreparedStatement PrSt;
-            String Query = "INSERT INTO Historial (Codigo_Gerente, Entidad, Descripcion, Fecha) VALUES(?,?,?,?,?)";
+            String Query = "INSERT INTO Historial (Codigo_Gerente, Entidad, Descripcion, Fecha) VALUES(?,?,?,?)";
             PrSt = conexion.prepareStatement(Query);
             PrSt.setString(1, historial.getCodigo_gerente());
             PrSt.setString(2, historial.getEntidad());

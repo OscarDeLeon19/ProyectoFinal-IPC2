@@ -96,7 +96,7 @@ public class DM_Gerente {
                 Historial historial = new Historial();
                 historial.setCodigo_gerente(gerente.getCodigo());
                 historial.setDescripcion(mensaje);
-                historial.setEntidad("Cajero");
+                historial.setEntidad("Gerente");
                 java.sql.Date fecha = new java.sql.Date(fechaActual.getTime());
                 historial.setFecha(fecha);
                 dmhis.AgregarHistorial(historial);  
