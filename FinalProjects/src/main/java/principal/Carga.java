@@ -94,7 +94,6 @@ public class Carga {
                 }
             } catch (Exception e) {
                 mesajes.add("Error en dato del archivo XML" + e.toString());
-                e.printStackTrace();
             }
 
             NodeList clientes = document.getElementsByTagName("CLIENTE");
@@ -123,7 +122,7 @@ public class Carga {
                                     String code = c.item(1).getTextContent();
                                     String creacion = c.item(3).getTextContent();
                                     String credito = c.item(5).getTextContent();
-                                    Cuenta nCuenta = new Cuenta(code, Date.valueOf(creacion), Integer.parseInt(credito), codigo);
+                                    Cuenta nCuenta = new Cuenta(code, Date.valueOf(creacion), Double.parseDouble(credito), codigo);
                                     String ms = dmcue.agregarCuenta(nCuenta);
                                     mesajes.add(ms);
                                 }

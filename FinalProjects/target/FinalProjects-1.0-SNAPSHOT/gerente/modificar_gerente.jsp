@@ -1,6 +1,6 @@
 <%-- 
-    Document   : modificar_cajero
-    Created on : 27/10/2020, 19:58:15
+    Document   : modificar_gerente
+    Created on : 27/10/2020, 15:17:44
     Author     : oscar19
 --%>
 
@@ -42,59 +42,57 @@
         </div>            
         <div style="width: 1000px; border: 1px solid black; padding: 50px" class="container h-100">
             <form action ="FuncionesGerente" method = "POST" class="form-group">
-                <h3>Nuevo Cajero</h3>
-                <small class="form-text text-muted"> Todos los campos son obligatorios </small>
+                <h3>Modifica tus datos</h3>
                 <div class="form-group">
-                    <input type = "hidden" name = "codigoCajero" value="${modCajero.getCodigo()}" class="form-control">
-                </div>
-                <div class="form-group">
-                    <input type = "hidden" name = "codigo_ger" value="${login_gerente.getCodigo()}" class="form-control">
+                    <label>Codigo del gerente</label>
+                    <input type = "hidden" name = "codigoGerente" value="${login_gerente.getCodigo()}" class="form-control">
                 </div>
                 <div class="form-group">
                     <label>Nombre</label>
-                    <input type = "text" name = "nomCajero" value="${modCajero.getNombre()}" class="form-control">
+                    <input type = "text" name = "nomGerente" value="${login_gerente.getNombre()}" class="form-control">
                 </div> 
                 <div class="form-group">
                     <label>Turno</label>
-                    <select class="form-control" name ="turnoCajero">
+                    <select class="form-control" name ="turnoGerente" value="${login_gerente.getTurno()}">
                         <option>MATUTINO</option>
                         <option>VESPERTINO</option>
                     </select>
                 </div> 
                 <div class="form-group">
                     <label>DPI</label>
-                    <input type = "text" name = "dpiCajero" value="${modCajero.getDpi()}" class="form-control">
+                    <input type = "text" name = "dpiGerente" value="${login_gerente.getDpi()}" class="form-control">
                 </div> 
                 <div class="form-group">
                     <label>Direccion</label>
-                    <input type = "text" name = "dirCajero" value="${modCajero.getDireccion()}" class="form-control">
+                    <input type = "text" name = "direccionGerente" value="${login_gerente.getDireccion()}" class="form-control">
                 </div> 
                 <div class="form-group">
                     <label>Sexo</label>
-                    <select class="form-control" name ="sexoCajero">
+                    <select class="form-control" name ="sexoGerente" value="${login_gerente.getSexo()}">
                         <option>Masculino</option>
                         <option>Femenino</option>
                     </select>
                 </div> 
                 <div class="form-group">
-                    <input type="submit" name ="accion" value="Modificar Cajero" class="btn btn-primary">
-                    <input type="submit" name ="accion" value="Volver a los cajeros" class="btn btn-primary">
+                    <input type="submit" name ="accion" value="Modificar Datos" class="btn btn-primary">
+                    <input type="submit" name ="accion" value="Volver a los gerentes" class="btn btn-primary">
                 </div>
             </form>
-            <button class="btn btn-primary" onclick="modCajero()">Cambiar Contraseña</button>
-        </div>
-        <div hidden id ="divCajero" style="width: 1000px; border: 1px solid black; padding: 50px" class="container h-100">
+            <button class="btn btn-primary" onclick="modGerente()">Cambiar Contraseña</button>
+        </div> 
+        <div hidden id ="divGerente" style="width: 1000px; border: 1px solid black; padding: 50px" class="container h-100">
             <form action ="FuncionesGerente" method = "POST" class="form-group">
                 <h3>Modificar contraseña</h3>
                 <div class="form-group">
-                    <input type = "hidden" name = "codigoCajero" value="${modCajero.getCodigo()}" class="form-control">
+                    <label>Codigo del gerente</label>
+                    <input type = "hidden" name = "codigoGerente" value="${login_gerente.getCodigo()}" class="form-control">
                 </div>
                 <div class="form-group">
                     <label>Ingresa la nueva contraseña</label>
                     <input type = "text" name = "pass"  class="form-control">
                 </div> 
                 <div class="form-group">
-                    <input type="submit" name ="accion" value="Change" class="btn btn-primary">
+                    <input type="submit" name ="accion" value="Cambiar" class="btn btn-primary">
                 </div>
             </form>
         </div> 

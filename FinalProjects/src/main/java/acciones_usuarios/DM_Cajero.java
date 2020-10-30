@@ -1,5 +1,6 @@
 package acciones_usuarios;
 
+import acciones_servicios.DM_Historial;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,14 +8,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import principal.Conexion;
 import principal.Encriptar;
+import servicios.Historial;
 import usuarios.Cajero;
-import usuarios.Gerente;
 
 public class DM_Cajero {
 
     private Conexion clase = new Conexion();
     private Connection conexion = clase.getConnection();
     private Encriptar encriptar = new Encriptar();
+    private java.util.Date fechaActual = new java.util.Date(); 
+    private DM_Historial dmhis = new DM_Historial();
 
     public DM_Cajero() {
     }
@@ -75,7 +78,7 @@ public class DM_Cajero {
         }
     }
 
-    public String modificarCajero(Cajero cajero) {
+    public String modificarCajero(Cajero cajero, String codigo) {
         String mensaje = "";
         try {
             PreparedStatement PrSt;
@@ -90,6 +93,13 @@ public class DM_Cajero {
             int resultado = PrSt.executeUpdate();
             if (resultado > 0) {
                 mensaje = "Modificado cajero Codigo No." + cajero.getCodigo() + " Nombre: " + cajero.getNombre();
+                Historial historial = new Historial();
+                historial.setCodigo_gerente(codigo);
+                historial.setDescripcion(mensaje);
+                historial.setEntidad("Cajero");
+                java.sql.Date fecha = new java.sql.Date(fechaActual.getTime());
+                historial.setFecha(fecha);
+                dmhis.AgregarHistorial(historial);                
             } else {
                 mensaje = "Fallo al modificar los datos";
             }

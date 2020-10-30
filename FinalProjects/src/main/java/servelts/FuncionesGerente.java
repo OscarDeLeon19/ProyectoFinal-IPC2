@@ -342,6 +342,7 @@ public class FuncionesGerente extends HttpServlet {
             String dpi = request.getParameter("dpiCajero");
             String direccion = request.getParameter("dirCajero");
             String sexo = request.getParameter("sexoCajero");
+            String codigo_ger = request.getParameter("codigo_ger");
             if (!"".equals(codigo)) {
                 cajero.setCodigo(codigo);
             }
@@ -360,7 +361,7 @@ public class FuncionesGerente extends HttpServlet {
             if (!"".equals(sexo)) {
                 cajero.setSexo(sexo);
             }
-            mensaje = dmcaj.modificarCajero(cajero);
+            mensaje = dmcaj.modificarCajero(cajero, codigo_ger);
             request.getSession().setAttribute("error", mensaje);
             ArrayList<Cajero> lista = dmcaj.verCajeros();
             request.getSession().setAttribute("listaCajeros", lista);
@@ -441,6 +442,7 @@ public class FuncionesGerente extends HttpServlet {
             String nacimiento = request.getParameter("fechaN");
             String direccion = request.getParameter("dir");
             String sexo = request.getParameter("sexo");
+            String codigo_ger = request.getParameter("codigo_ger");
             try {
                 Date fecha = Date.valueOf(nacimiento);
                 cliente.setNacimiento(fecha);
@@ -462,7 +464,7 @@ public class FuncionesGerente extends HttpServlet {
             if (!"".equals(sexo)) {
                 cliente.setSexo(sexo);
             }
-            mensaje = dmcli.modificarCliente(cliente);
+            mensaje = dmcli.modificarCliente(cliente, codigo_ger);
             request.getSession().setAttribute("error", mensaje);
             ArrayList<Cliente> lista = dmcli.verClientes();
             request.getSession().setAttribute("listaClientes", lista);
