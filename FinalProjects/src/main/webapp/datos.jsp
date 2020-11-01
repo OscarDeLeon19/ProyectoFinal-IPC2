@@ -21,5 +21,12 @@
                 }
             %>
         </div>
+        <div>
+            <form action ="Controlador" method = "POST" class="form-group">
+                <div class="form-group">
+                    <input type="submit" name ="accion" value="Regresar a Principal" class="btn btn-primary">
+                </div>
+            </form>
+        </div>
     </body>
 </html>

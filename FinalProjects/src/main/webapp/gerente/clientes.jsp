@@ -66,6 +66,7 @@
                         <th scope="col">DPI</th>
                         <th scope="col">Fecha de Nacimiento</th>
                         <th scope="col">Direccion</th>
+                        <th scope="col">DPI en pdf</th>
                         <th scope="col">Sexo</th>
                     </tr>
                 </thead>
@@ -81,6 +82,7 @@
                         <td><%= cliente.getDpi()%></td> 
                         <td><%= cliente.getNacimiento() %></td>
                         <td><%= cliente.getDireccion()%></td>
+                        <td><a href="<%= cliente.getPdf_dpi()%>">DPI</a></td>
                         <td><%= cliente.getSexo()%></td>
                         <td>
                             <a href="FuncionesGerente?accion=mod_cliente&codigo=<%= cliente.getCodigo()%>">Modificar</a>

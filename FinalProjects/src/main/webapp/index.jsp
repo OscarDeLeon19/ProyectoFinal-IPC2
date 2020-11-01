@@ -27,7 +27,7 @@
         <div>
             <form action ="Controlador" method = "POST" class="form-group">
                 <div class="form-group">
-                    <label>Codigo</label>
+                    <label>Ingresar Ruta del archivo XML</label>
                     <input type = "input" name = "dataxml"  class="form-control">
                 </div>
                 <div class="form-group">

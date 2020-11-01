@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import principal.Conexion;
 import servicios.Cuenta;
-import usuarios.Gerente;
 
 
 public class DM_Cuenta {

@@ -109,8 +109,9 @@ public class Carga {
                         String nacimiento = element.getElementsByTagName("BIRTH").item(0).getTextContent();
                         String direccion = element.getElementsByTagName("DIRECCION").item(0).getTextContent();
                         String sexo = element.getElementsByTagName("SEXO").item(0).getTextContent();
+                        String pdf_dpi = element.getElementsByTagName("DPI-PDF").item(0).getTextContent();
                         String contraseña = element.getElementsByTagName("PASSWORD").item(0).getTextContent();
-                        Cliente cliente = new Cliente(codigo, nombre, dpi, Date.valueOf(nacimiento), direccion, sexo, contraseña);
+                        Cliente cliente = new Cliente(codigo, nombre, dpi, Date.valueOf(nacimiento), direccion, sexo, "archivos/" + pdf_dpi, contraseña);
                         String msj = dmcli.agregarCliente(cliente);
                         mesajes.add(msj);
                         Node cuenta = element.getElementsByTagName("CUENTAS").item(0).getFirstChild();
@@ -132,7 +133,7 @@ public class Carga {
                 }
             } catch (Exception e) {
                 mesajes.add("Error en dato del archivo XML" + e.toString());
-                e.printStackTrace();
+
             }
 
             NodeList transacciones = document.getElementsByTagName("TRANSACCION");
@@ -144,12 +145,12 @@ public class Carga {
                     if (nodo.getNodeType() == Node.ELEMENT_NODE) {
                         Element element = (Element) nodo;
                         String codigo = element.getElementsByTagName("CODIGO").item(0).getTextContent();
-                        String codigo_cuenta = element.getElementsByTagName("CUENTA").item(0).getTextContent();
+                        String codigo_cuenta = element.getElementsByTagName("CUENTA-ID").item(0).getTextContent();
                         String fecha = element.getElementsByTagName("FECHA").item(0).getTextContent();
                         String hora = element.getElementsByTagName("HORA").item(0).getTextContent();
                         String tipo = element.getElementsByTagName("TIPO").item(0).getTextContent();
                         String monto = element.getElementsByTagName("MONTO").item(0).getTextContent();
-                        String codigo_cajero = element.getElementsByTagName("CAJERO").item(0).getTextContent();
+                        String codigo_cajero = element.getElementsByTagName("CAJERO-ID").item(0).getTextContent();
 
                         Transaccion transaccion = new Transaccion(Integer.parseInt(codigo), codigo_cuenta, Date.valueOf(fecha), hora, tipo, Double.parseDouble(monto), codigo_cajero);
                         String msj = dmtra.agregarTransaccion(transaccion);

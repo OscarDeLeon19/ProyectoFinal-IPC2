@@ -1,29 +1,29 @@
-
 package usuarios;
 
 import java.sql.Date;
 
-
 public class Cliente {
-    
+
     private String codigo;
     private String nombre;
     private String dpi;
     private Date nacimiento;
     private String direccion;
     private String sexo;
+    private String pdf_dpi;
     private String contraseña;
 
     public Cliente() {
     }
 
-    public Cliente(String codigo, String nombre, String dpi, Date nacimiento, String direccion, String sexo, String contraseña) {
+    public Cliente(String codigo, String nombre, String dpi, Date nacimiento, String direccion, String sexo, String pdf_dpi, String contraseña) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.dpi = dpi;
         this.nacimiento = nacimiento;
         this.direccion = direccion;
         this.sexo = sexo;
+        this.pdf_dpi = pdf_dpi;
         this.contraseña = contraseña;
     }
 
@@ -82,6 +82,13 @@ public class Cliente {
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     }
-     
-    
+
+    public String getPdf_dpi() {
+        return pdf_dpi;
+    }
+
+    public void setPdf_dpi(String pdf_dpi) {
+        this.pdf_dpi = pdf_dpi;
+    }
+
 }

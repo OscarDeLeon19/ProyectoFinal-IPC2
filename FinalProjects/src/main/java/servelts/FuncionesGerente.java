@@ -47,7 +47,7 @@ public class FuncionesGerente extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -133,7 +133,7 @@ public class FuncionesGerente extends HttpServlet {
             }
             ArrayList<Cliente> lista = dmcli.verClientes();
             request.getSession().setAttribute("cliente", null);
-            request.getSession().setAttribute("listaCientes", lista);
+            request.getSession().setAttribute("listaClientes", lista);
             request.getSession().setAttribute("error", mensaje);
             acceder = "gerente/clientes.jsp";
         }
@@ -383,10 +383,26 @@ public class FuncionesGerente extends HttpServlet {
             request.getSession().setAttribute("cliente", nombre);
             request.getSession().setAttribute("listaClientes", lista);
             acceder = "gerente/clientes.jsp";
+        } else if (accion.equalsIgnoreCase("Subir DPI")) {
+            String pdf = request.getParameter("pdf_dpi");
+            if ("".equals(pdf)) {
+                request.getSession().setAttribute("error", "No haz subido ningun archivo");
+                acceder = "gerente/subir_dpi.jsp";
+            } else {
+                if (pdf.endsWith(".pdf")) {
+                    request.getSession().setAttribute("pdf_cliente", pdf);
+                    request.getSession().setAttribute("newCliente", null);
+                    request.getSession().setAttribute("error", null);
+                    acceder = "gerente/agregar_cliente.jsp";
+                } else {
+                    request.getSession().setAttribute("error", "Archivo incorrecto, se requiere un PDF");
+                    acceder = "gerente/subir_dpi.jsp";
+                }
+            }
         } else if (accion.equalsIgnoreCase("Nuevo Cliente")) {
-            request.getSession().setAttribute("newCliente", null);
+            request.getSession().setAttribute("pdf_cliente", null);
             request.getSession().setAttribute("error", null);
-            acceder = "gerente/agregar_cliente.jsp";
+            acceder = "gerente/subir_dpi.jsp";
         } else if (accion.equalsIgnoreCase("Volver a los clientes")) {
             ArrayList<Cliente> lista = dmcli.verClientes();
             request.getSession().setAttribute("cliente", null);
@@ -426,6 +442,7 @@ public class FuncionesGerente extends HttpServlet {
             }
             if (!"".equals(contraseña)) {
                 cliente.setContraseña(contraseña);
+                cliente.setPdf_dpi("archivos/" + String.valueOf(request.getSession().getAttribute("pdf_cliente")));
                 mensaje = dmcli.agregarCliente(cliente);
             } else {
                 mensaje = "La contraseña no puede ser vacia";

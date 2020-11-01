@@ -55,7 +55,7 @@ public class Main {
         
         try {
 
-            File file = new File("/home/oscar19/data.xml");
+            File file = new File("C:\\Users\\oscar\\Desktop\\GIT\\ProyectoFinal-IPC2\\FinalProjects\\src\\main\\webapp\\archivos\\data.xml");
             Carga f = new Carga();
             String c = f.ingresarDatos(file);
             System.out.println(c);
@@ -67,6 +67,9 @@ public class Main {
 
         }
 
+//    Conexion clase = new Conexion();
+//    Connection con = clase.getConnection();
+    
     }
 
 }

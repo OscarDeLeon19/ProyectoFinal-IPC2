@@ -29,7 +29,7 @@ public class DM_Cliente {
         try {
             String contraseña = encriptar.ObtenerEncriptacion(cliente.getContraseña());
             PreparedStatement PrSt;
-            String Query = "INSERT INTO Cliente VALUES(?,?,?,?,?,?,?)";
+            String Query = "INSERT INTO Cliente VALUES(?,?,?,?,?,?,?,?)";
             PrSt = conexion.prepareStatement(Query);
             PrSt.setString(1, cliente.getCodigo());
             PrSt.setString(2, cliente.getNombre());
@@ -37,7 +37,8 @@ public class DM_Cliente {
             PrSt.setDate(4, cliente.getNacimiento());
             PrSt.setString(5, cliente.getDireccion());
             PrSt.setString(6, cliente.getSexo());
-            PrSt.setString(7, contraseña);
+            PrSt.setString(7, cliente.getPdf_dpi());
+            PrSt.setString(8, contraseña);
             int resultado = PrSt.executeUpdate();
             if (resultado > 0) {
                 mensaje = "Agregado Cliente Codigo No." + cliente.getCodigo() + " Nombre: " + cliente.getNombre();
@@ -170,6 +171,7 @@ public class DM_Cliente {
                 cliente.setDireccion(rs.getString("Direccion"));
                 cliente.setSexo(rs.getString("Sexo"));
                 cliente.setContraseña(rs.getString("Contraseña"));
+                cliente.setPdf_dpi(rs.getString("PDF_DPI"));
                 lista.add(cliente);
             }
             PrSt.close();
@@ -199,6 +201,7 @@ public class DM_Cliente {
                 cliente.setDireccion(rs.getString("Direccion"));
                 cliente.setSexo(rs.getString("Sexo"));
                 cliente.setContraseña(rs.getString("Contraseña"));
+                cliente.setPdf_dpi(rs.getString("PDF_DPI"));
                 lista.add(cliente);
             }
             PrSt.close();
@@ -227,6 +230,7 @@ public class DM_Cliente {
                 cliente.setDireccion(rs.getString("Direccion"));
                 cliente.setSexo(rs.getString("Sexo"));
                 cliente.setContraseña(rs.getString("Contraseña"));
+                cliente.setPdf_dpi(rs.getString("PDF_DPI"));
             }
             PrSt.close();
             rs.close();

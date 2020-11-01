@@ -122,6 +122,9 @@ public class Controlador extends HttpServlet {
                 acceder = "index.jsp";
 
             }
+        } else if (accion.equalsIgnoreCase("Regresar a Principal")) {
+            request.getSession().setAttribute("error", null);
+            acceder = "index.jsp";
         }
         RequestDispatcher pagina = request.getRequestDispatcher(acceder);
         pagina.forward(request, response);
