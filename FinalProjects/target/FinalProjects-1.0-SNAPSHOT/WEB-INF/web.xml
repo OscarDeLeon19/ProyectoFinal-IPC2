@@ -8,6 +8,10 @@
         <servlet-name>FuncionesGerente</servlet-name>
         <servlet-class>servelts.FuncionesGerente</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ReportesGerente</servlet-name>
+        <servlet-class>servelts.ReportesGerente</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Controlador</servlet-name>
         <url-pattern>/Controlador</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>FuncionesGerente</servlet-name>
         <url-pattern>/FuncionesGerente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReportesGerente</servlet-name>
+        <url-pattern>/ReportesGerente</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

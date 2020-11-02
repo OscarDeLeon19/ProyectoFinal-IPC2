@@ -23,7 +23,7 @@
                 <a class="nav-item btn btn-outline-light" href="Controlador?accion=PrimeroG">Inicio</a>
                 <a class="nav-item active btn btn-outline-light" href="Controlador?accion=FuncionesG"m>Funciones</a>
                 <a class="nav-item btn btn-outline-light" href="Controlador?accion=ReportesG">Reportes</a>
-                <a hidden class="nav-item btn btn-outline-light" href="#">${login_gerente.getTurno()}</a>
+                <a class="nav-item btn btn-outline-light" href="Controlador?accion=CambiarHora">${hora}:00</a> 
             </div>
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

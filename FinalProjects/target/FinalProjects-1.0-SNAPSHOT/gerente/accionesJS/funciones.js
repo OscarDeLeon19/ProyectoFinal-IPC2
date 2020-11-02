@@ -10,3 +10,4 @@ function modCajero() {
 function modCliente() {
     document.getElementById("divCliente").removeAttribute("hidden");
 }
+

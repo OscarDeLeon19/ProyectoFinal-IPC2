@@ -136,6 +136,9 @@ public class FuncionesGerente extends HttpServlet {
             request.getSession().setAttribute("listaClientes", lista);
             request.getSession().setAttribute("error", mensaje);
             acceder = "gerente/clientes.jsp";
+        } else if (accion.equalsIgnoreCase("Limites")) {
+            request.getSession().setAttribute("error", null);
+            acceder = "gerente/limites.jsp";
         }
         RequestDispatcher pagina = request.getRequestDispatcher(acceder);
         pagina.forward(request, response);
@@ -497,6 +500,28 @@ public class FuncionesGerente extends HttpServlet {
             }
             request.getSession().setAttribute("error", mensaje);
             acceder = "gerente/modificar_cliente.jsp";
+        } else if (accion.equalsIgnoreCase("Ingresar Limites")) {
+            String mensaje = "";
+            String l1 = request.getParameter("lim1");
+            String l2 = request.getParameter("lim2");
+            try {
+                int limite1 = Integer.parseInt(l1);
+                int limite2 = Integer.parseInt(l2);
+                if (limite1 < limite2) {
+                    request.getSession().setAttribute("limite1", limite1);
+                    request.getSession().setAttribute("limite2", limite2);
+                    mensaje = "Limites ingresados satisfactoriamente";
+                } else{
+                    request.getSession().setAttribute("limite1", null);
+                    request.getSession().setAttribute("limite2", null);
+                    mensaje = "El limite de las transacciones sumadas debe ser mayor";
+                }
+
+            } catch (Exception e) {
+                mensaje = "Debes ingresar numeros";
+            }
+            request.getSession().setAttribute("error", mensaje);
+            acceder = "gerente/limites.jsp";
         }
         RequestDispatcher pagina = request.getRequestDispatcher(acceder);
         pagina.forward(request, response);

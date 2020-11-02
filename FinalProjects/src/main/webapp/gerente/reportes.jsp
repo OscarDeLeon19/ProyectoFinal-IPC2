@@ -19,9 +19,9 @@
         <nav class="navbar bg-info">
             <div>
                 <a class="nav-item btn btn-outline-light" href="Controlador?accion=PrimeroG">Inicio</a>
-                <a class="nav-item active btn btn-outline-light" href="Controlador?accion=FuncionesG"m>Funciones</a>
-                <a class="nav-item btn btn-outline-light" href="">Reportes</a>
-                <a hidden class="nav-item btn btn-outline-light" href="#">${login_gerente.getTurno()}</a>
+                <a class="nav-item  btn btn-outline-light" href="Controlador?accion=FuncionesG"m>Funciones</a>
+                <a class="nav-item active btn btn-outline-light" href="">Reportes</a>
+                <a class="nav-item btn btn-outline-light" href="Controlador?accion=CambiarHora">${hora}:00</a> 
             </div>
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -36,5 +36,9 @@
                 </div>
             </div>
         </nav>
+        <div style="width: 1000px; border: 1px solid black; padding: 50px" class="container h-100">
+            <h1>Reportes que puede realizar el gerente</h1>
+            <a href="ReportesGerente?accion=VerHistorial">Ver Historial de cambios</a><br>
+        </div>
     </body>
 </html>

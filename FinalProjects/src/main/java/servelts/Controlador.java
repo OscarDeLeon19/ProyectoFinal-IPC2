@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Random;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -33,6 +34,7 @@ public class Controlador extends HttpServlet {
     DM_Cliente dmcli = new DM_Cliente();
     DM_Gerente dmgen = new DM_Gerente();
     DM_Cuenta dmcue = new DM_Cuenta();
+    Random random = new Random();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,7 +48,7 @@ public class Controlador extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -78,11 +80,29 @@ public class Controlador extends HttpServlet {
             request.getSession().setAttribute("error", null);
             acceder = "index.jsp";
         } else if (accion.equalsIgnoreCase("FuncionesG")) {
-            acceder = "gerente/funciones.jsp";
+            int numero = Integer.parseInt((String.valueOf(request.getSession().getAttribute("hora"))));
+            Gerente gerente = (Gerente) request.getSession().getAttribute("login_gerente");
+            if ("matutino".equals(gerente.getTurno().toLowerCase())) {
+                if (numero >= 6 && numero <= 14) {
+                    acceder = "gerente/funciones.jsp";
+                } else {
+                    acceder = "gerente/error.jsp";
+                }
+            } else if ("vespertino".equals(gerente.getTurno().toLowerCase())) {
+                if (numero >= 13 && numero <= 22) {
+                    acceder = "gerente/funciones.jsp";
+                } else {
+                    acceder = "gerente/error.jsp";
+                }
+            }
         } else if (accion.equalsIgnoreCase("PrimeroG")) {
             acceder = "gerente/interfaz.jsp";
         } else if (accion.equalsIgnoreCase("ReportesG")) {
             acceder = "gerente/reportes.jsp";
+        } else if (accion.equalsIgnoreCase("CambiarHora")) {
+            int hora = random.nextInt(23);
+            request.getSession().setAttribute("hora", hora);
+            acceder = "gerente/interfaz.jsp";
         }
         RequestDispatcher pagina = request.getRequestDispatcher(acceder);
         pagina.forward(request, response);
@@ -115,6 +135,9 @@ public class Controlador extends HttpServlet {
             Gerente gerente = dmgen.ingresarGerente(codigo, contraseña);
             if (gerente != null) {
                 request.getSession().setAttribute("login_gerente", gerente);
+                int hora = random.nextInt(23);
+                request.getSession().setAttribute("hora", hora);
+                System.out.println(hora);
                 acceder = "gerente/interfaz.jsp";
             } else {
                 String mensaje = "Codigo o contraseña incorrecta";

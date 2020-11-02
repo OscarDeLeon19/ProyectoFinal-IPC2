@@ -21,7 +21,7 @@
                 <a class="nav-item btn btn-outline-light" href="Controlador?accion=PrimeroG">Inicio</a>
                 <a class="nav-item active btn btn-outline-light" href="">Funciones</a>
                 <a class="nav-item btn btn-outline-light" href="Controlador?accion=ReportesG">Reportes</a>
-                <a hidden class="nav-item btn btn-outline-light" href="#">${login_gerente.getTurno()}</a>
+                <a class="nav-item btn btn-outline-light" href="Controlador?accion=CambiarHora">${hora}:00</a> 
             </div>
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -36,12 +36,18 @@
                 </div>
             </div>
         </nav>
-        <h1>Funciones del gerente</h1>
-        <div>
-            <a href="FuncionesGerente?accion=CrearCuenta">Crear Cuenta</a><br>
+        <div  style="width: 1000px; border: 1px solid black; padding: 50px" class="container h-100">
+            <h1>Funciones que puede realizar el gerente</h1>
+            <a href="FuncionesGerente?accion=CrearCuenta">Crear Cuenta para Cliente</a><br>
             <a href="FuncionesGerente?accion=Gerentes">Gerentes de la empresa</a><br>
             <a href="FuncionesGerente?accion=Cajeros">Cajeros de la empresa</a><br>
             <a href="FuncionesGerente?accion=Clientes">Clientes de la empresa</a><br>
+            <a href="FuncionesGerente?accion=Limites">Ingresar limites para reportes</a><br>
+        </div>
+        <div id = "fueraHorario" hidden>
+            <hi>
+                Hola
+            </hi>
         </div>
     </body>
 </html>
