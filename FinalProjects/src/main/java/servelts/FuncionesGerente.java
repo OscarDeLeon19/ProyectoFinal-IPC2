@@ -505,11 +505,11 @@ public class FuncionesGerente extends HttpServlet {
             String l1 = request.getParameter("lim1");
             String l2 = request.getParameter("lim2");
             try {
-                int limite1 = Integer.parseInt(l1);
-                int limite2 = Integer.parseInt(l2);
+                double limite1 = Double.parseDouble(l1);
+                double limite2 = Double.parseDouble(l2);
                 if (limite1 < limite2) {
-                    request.getSession().setAttribute("limite1", limite1);
-                    request.getSession().setAttribute("limite2", limite2);
+                    request.getSession().setAttribute("limite1", String.valueOf(limite1));
+                    request.getSession().setAttribute("limite2", String.valueOf(limite2));
                     mensaje = "Limites ingresados satisfactoriamente";
                 } else{
                     request.getSession().setAttribute("limite1", null);

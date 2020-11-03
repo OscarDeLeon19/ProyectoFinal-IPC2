@@ -36,9 +36,28 @@
                 </div>
             </div>
         </nav>
+        <% String limite2 = (String) request.getSession().getAttribute("limite2"); %>
         <div style="width: 1000px; border: 1px solid black; padding: 50px" class="container h-100">
             <h1>Reportes que puede realizar el gerente</h1>
             <a href="ReportesGerente?accion=VerHistorial">Ver Historial de cambios</a><br>
+            <a href="ReportesGerente?accion=ClientesDinero">Los 10 clientes con mas dinero</a><br>
+            <a href="ReportesGerente?accion=ClientesSinTransacciones">Clientes sin transacciones</a><br>
+            <a href="ReportesGerente?accion=HistorialCliente">Historial de transacciones de un cliente</a><br>
+            <a href="ReportesGerente?accion=TransaccionesCajero">Cajeros que mas transacciones han realizado</a><br>
+            <%
+                if (limite2 != null) {
+            %>
+            <a href="ReportesGerente?accion=VerTransacciones"> Ver Transacciones</a><br>
+            <a href="ReportesGerente?accion=VerSumadas"> Ver Transacciones Sumadas</a><br>
+            <%
+            } else {
+            %>
+            <a> Ver Transacciones</a><br>
+            <a> Ver Transacciones Sumadas</a><br>
+            <%
+                }
+
+            %>
         </div>
     </body>
 </html>

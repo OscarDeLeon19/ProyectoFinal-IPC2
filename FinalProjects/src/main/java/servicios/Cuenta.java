@@ -10,6 +10,7 @@ public class Cuenta {
     private Date creacion;
     private double credito;
     private String codigo_cliente;
+    private String nombre;
 
     public Cuenta() {
     }
@@ -52,6 +53,13 @@ public class Cuenta {
     public void setCodigo_cliente(String codigo_cliente) {
         this.codigo_cliente = codigo_cliente;
     }
-    
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
     
 }
