@@ -14,6 +14,7 @@ usuarios\Cajero.class
 acciones_usuarios\DM_Gerente.class
 principal\Encriptar.class
 servelts\FuncionesGerente.class
+exportaciones\Reporte1G.class
 servelts\ReportesGerente.class
 principal\Main.class
 servicios\Cuenta.class

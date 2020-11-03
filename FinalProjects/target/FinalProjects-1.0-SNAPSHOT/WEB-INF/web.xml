@@ -12,6 +12,10 @@
         <servlet-name>ReportesGerente</servlet-name>
         <servlet-class>servelts.ReportesGerente</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Reporte1G</servlet-name>
+        <servlet-class>exportaciones.Reporte1G</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Controlador</servlet-name>
         <url-pattern>/Controlador</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>ReportesGerente</servlet-name>
         <url-pattern>/ReportesGerente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Reporte1G</servlet-name>
+        <url-pattern>/Reporte1G</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -82,6 +82,10 @@
                     %>
                 </tbody>
             </table>
+            <form method="GET" action="Reporte1G">
+                <input type="hidden" name ="entidad" value="${entidad}"/>
+                <input type="submit" class="btn btn-primary" value="Exportar"/>
+            </form>
         </div>
     </body>
 </html>

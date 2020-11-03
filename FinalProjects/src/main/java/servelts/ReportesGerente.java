@@ -71,6 +71,7 @@ public class ReportesGerente extends HttpServlet {
         if (accion.equalsIgnoreCase("VerHistorial")) {
             ArrayList<Historial> lista = new ArrayList<>();
             request.getSession().setAttribute("historial", lista);
+            request.getSession().setAttribute("entidad", null);
             acceder = "gerente/reportes/historial_gerente.jsp";
         } else if (accion.equalsIgnoreCase("VerTransacciones")){
             double limite = Double.parseDouble((String) request.getSession().getAttribute("limite1"));
@@ -126,14 +127,17 @@ public class ReportesGerente extends HttpServlet {
         if (accion.equalsIgnoreCase("Historial Gerente")) {
             ArrayList<Historial> lista = dmhis.verHistorial("Gerente");
             request.getSession().setAttribute("historial", lista);
+            request.getSession().setAttribute("entidad", "Gerente");
             acceder = "gerente/reportes/historial_gerente.jsp";
         } else if (accion.equalsIgnoreCase("Historial Cajero")) {
             ArrayList<Historial> lista = dmhis.verHistorial("Cajero");
             request.getSession().setAttribute("historial", lista);
+            request.getSession().setAttribute("entidad", "Cajero");
             acceder = "gerente/reportes/historial_gerente.jsp";
         } else if (accion.equalsIgnoreCase("Historial Cliente")) {
             ArrayList<Historial> lista = dmhis.verHistorial("Cliente");
             request.getSession().setAttribute("historial", lista);
+            request.getSession().setAttribute("entidad", "Cliente");
             acceder = "gerente/reportes/historial_gerente.jsp";
         } else if (accion.equalsIgnoreCase("Buscar Cajeros")) {
             String f1 = request.getParameter("fecha1");
