@@ -37,13 +37,10 @@
         </div>
         <%            }
         %>
-        <div>
-            <button class="btn btn-primary" onclick="ingresoGerente()">Ingreso Gerente</button>
-        </div>
         <div class="alert alert-danger" role="alert">
             ${error}
         </div>
-        <div id = "div1" hidden="">
+        <div>
             <h1>Login Gerente</h1>
             <form action ="Controlador" method = "POST" class="form-group">
                 <div class="form-group">
@@ -60,6 +57,25 @@
             </form>
             <div>
                 <button class="btn btn-primary" onclick="salirGerente()()">Salir</button>
+            </div>
+        </div>
+        <div>
+            <h1>Login Cajero</h1>
+            <form action ="Controlador" method = "POST" class="form-group">
+                <div class="form-group">
+                    <label>Codigo</label>
+                    <input type = "text" name = "txcodigo"  class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type = "password" name = "pass"  class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="submit" name ="accion" value="Acceso Cajero" class="btn btn-primary">
+                </div>
+            </form>
+            <div>
+                <button class="btn btn-primary" onclick="salirCajero()()">Salir</button>
             </div>
         </div>
     </body>

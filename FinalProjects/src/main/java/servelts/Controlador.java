@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import principal.Carga;
+import usuarios.Cajero;
 import usuarios.Gerente;
 
 /**
@@ -103,6 +104,30 @@ public class Controlador extends HttpServlet {
             int hora = random.nextInt(23);
             request.getSession().setAttribute("hora", hora);
             acceder = "gerente/interfaz.jsp";
+        } else if (accion.equalsIgnoreCase("CambiarHoraC")) {
+            int hora = random.nextInt(23);
+            request.getSession().setAttribute("hora", hora);
+            acceder = "cajero/interfaz.jsp";
+        } else if (accion.equalsIgnoreCase("FuncionesC")) {
+            int numero = Integer.parseInt((String.valueOf(request.getSession().getAttribute("hora"))));
+            Cajero cajero = (Cajero) request.getSession().getAttribute("login_cajero");
+            if ("matutino".equals(cajero.getTurno().toLowerCase())) {
+                if (numero >= 6 && numero <= 14) {
+                    acceder = "cajero/funciones.jsp";
+                } else {
+                    acceder = "cajero/error.jsp";
+                }
+            } else if ("vespertino".equals(cajero.getTurno().toLowerCase())) {
+                if (numero >= 13 && numero <= 22) {
+                    acceder = "cajero/funciones.jsp";
+                } else {
+                    acceder = "cajero/error.jsp";
+                }
+            }
+        } else if (accion.equalsIgnoreCase("PrimeroC")) {
+            acceder = "cajero/interfaz.jsp";
+        } else if (accion.equalsIgnoreCase("ReportesC")) {
+            acceder = "cajero/reportes.jsp";
         }
         RequestDispatcher pagina = request.getRequestDispatcher(acceder);
         pagina.forward(request, response);
@@ -148,6 +173,22 @@ public class Controlador extends HttpServlet {
         } else if (accion.equalsIgnoreCase("Regresar a Principal")) {
             request.getSession().setAttribute("error", null);
             acceder = "index.jsp";
+        } else if (accion.equalsIgnoreCase("Acceso Cajero")) {
+            String codigo = request.getParameter("txcodigo");
+            String contraseña = request.getParameter("pass");
+            Cajero cajero = dmcaj.ingresarCajero(codigo, contraseña);
+            if (cajero != null) {
+                request.getSession().setAttribute("login_cajero", cajero);
+                int hora = random.nextInt(23);
+                request.getSession().setAttribute("hora", hora);
+                System.out.println(hora);
+                acceder = "cajero/interfaz.jsp";
+            } else {
+                String mensaje = "Codigo o contraseña incorrecta";
+                request.getSession().setAttribute("error", mensaje);
+                acceder = "index.jsp";
+
+            }
         }
         RequestDispatcher pagina = request.getRequestDispatcher(acceder);
         pagina.forward(request, response);

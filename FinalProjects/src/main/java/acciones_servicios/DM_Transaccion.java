@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import principal.Conexion;
 import servicios.Transaccion;
@@ -13,6 +14,7 @@ public class DM_Transaccion {
 
     private Conexion clase = new Conexion();
     private Connection conexion = clase.getConnection();
+    private DM_Cuenta dmcue = new DM_Cuenta();
 
     public DM_Transaccion() {
     }
@@ -88,7 +90,7 @@ public class DM_Transaccion {
         }
         return lista;
     }
-    
+
     public ArrayList<Transaccion> cajerosConMasTransacciones(String f1, String f2) {
         ArrayList<Transaccion> lista = new ArrayList<>();
         try {
@@ -113,11 +115,11 @@ public class DM_Transaccion {
         }
         return lista;
     }
-    
+
     public ArrayList<Transaccion> historalTransacciones(String nombre) {
         ArrayList<Transaccion> lista = new ArrayList<>();
         try {
-            nombre = "%"+ nombre + "%";
+            nombre = "%" + nombre + "%";
             PreparedStatement PrSt;
             ResultSet rs = null;
             String Query = "select t.Codigo as Codigo,  t.Codigo_Cuenta as Codigo_Cuenta, t.Fecha as Fecha, t.Monto as Monto, l.Nombre as Nombre from Transaccion t join Cuenta c join Cliente l on c.Codigo = t.Codigo_Cuenta and c.Codigo_Cliente = l.Codigo where l.Nombre like ?";
@@ -131,8 +133,8 @@ public class DM_Transaccion {
                 transaccion.setFecha(rs.getDate("Fecha"));
                 transaccion.setMonto(rs.getDouble("Monto"));
                 transaccion.setTipo(rs.getString("Nombre"));
-                if (!"%%".equals(nombre)){
-                lista.add(transaccion);
+                if (!"%%".equals(nombre)) {
+                    lista.add(transaccion);
                 }
             }
         } catch (SQLException e) {
@@ -141,4 +143,85 @@ public class DM_Transaccion {
         return lista;
     }
 
+    public ArrayList<Transaccion> verDepositosRetiros(String codigo_cajero, Date fecha) {
+        ArrayList<Transaccion> lista = new ArrayList<>();
+        try {
+            PreparedStatement PrSt;
+            ResultSet rs = null;
+            String Query = "SELECT * FROM Transaccion WHERE Codigo_Cajero = ? AND Fecha = ?";
+            PrSt = conexion.prepareStatement(Query);
+            PrSt.setString(1, codigo_cajero);
+            PrSt.setDate(2, fecha);
+            rs = PrSt.executeQuery();
+            while (rs.next()) {
+                Transaccion transaccion = new Transaccion();
+                transaccion.setCodigo(rs.getInt("Codigo"));
+                transaccion.setCodigo_cuenta(rs.getString("Codigo_Cuenta"));
+                transaccion.setFecha(rs.getDate("Fecha"));
+                transaccion.setHora(rs.getString("Hora"));
+                transaccion.setTipo(rs.getString("Tipo"));
+                transaccion.setMonto(rs.getDouble("Monto"));
+                transaccion.setCodigo_cajero(rs.getString("Codigo_Cajero"));
+                lista.add(transaccion);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return lista;
+    }
+
+    public double obtenerBalance(ArrayList<Transaccion> lista) {
+        double deposito = 0;
+        double retiro = 0;
+
+        for (int i = 0; i < lista.size(); i++) {
+            Transaccion transaccion = lista.get(i);
+            if ("CREDITO".equals(transaccion.getTipo())) {
+                deposito = deposito + transaccion.getMonto();
+            } else if ("DEBITO".equals(transaccion.getTipo())) {
+                retiro = retiro + transaccion.getMonto();
+            }
+        }
+        System.out.println(deposito);
+        System.out.println(retiro);
+        double balance = deposito - retiro;
+        return balance;
+    }
+
+    public ArrayList<Transaccion> verListaDeTransacciones(String codigo_cajero, String f1, String f2) {
+        ArrayList<Transaccion> lista = new ArrayList<>();
+        try {
+            Date fecha1 = Date.valueOf(f1);
+            Date fecha2 = Date.valueOf(f2);
+            PreparedStatement PrSt;
+            ResultSet rs = null;
+            String Query = "SELECT count(Fecha) as Transacciones, Fecha from Transaccion where Codigo_Cajero = ? and fecha between ? and ? group by Fecha order by Fecha desc";
+            PrSt = conexion.prepareStatement(Query);
+            PrSt.setString(1, codigo_cajero);
+            PrSt.setDate(2, fecha1);
+            PrSt.setDate(3, fecha2);
+            rs = PrSt.executeQuery();
+            while (rs.next()) {
+                Transaccion transaccion = new Transaccion();
+                transaccion.setCodigo(rs.getInt("Transacciones"));
+                transaccion.setFecha(rs.getDate("Fecha"));
+                ArrayList<Transaccion> transacciones = verDepositosRetiros(codigo_cajero, transaccion.getFecha());
+                double balance = obtenerBalance(transacciones);
+                transaccion.setMonto(balance);
+                lista.add(transaccion);
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return lista;
+    }
+
+    public double obtenerBalanceFinal(ArrayList<Transaccion> lista) {
+        double balance = 0;
+        for (int i = 0; i < lista.size(); i++) {
+            Transaccion transaccion = lista.get(i);
+            balance = balance + transaccion.getMonto();
+        }
+        return balance;
+    }
 }

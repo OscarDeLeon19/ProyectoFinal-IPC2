@@ -1,13 +1,16 @@
+exportaciones\Reporte4G.class
 usuarios\Cliente.class
 acciones_servicios\DM_Cuenta.class
 acciones_usuarios\DM_Cliente.class
 servicios\Transaccion.class
+servelts\FuncionesCajero.class
 principal\Conexion.class
 acciones_servicios\DM_Transaccion.class
 servelts\Controlador.class
 usuarios\Gerente.class
 acciones_usuarios\DM_Cajero.class
 principal\Carga.class
+servelts\ReportesCajero.class
 servicios\Historial.class
 acciones_servicios\DM_Historial.class
 usuarios\Cajero.class

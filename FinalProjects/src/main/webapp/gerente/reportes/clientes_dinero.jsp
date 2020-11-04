@@ -59,7 +59,7 @@
                                 Cuenta cuenta = lista.get(i);
                     %>
                     <tr>
-                        <td><%= cuenta.getCredito() %></td>
+                        <td><%= cuenta.getCredito()%></td>
                         <td><%= cuenta.getCodigo_cliente()%></td>
                         <td><%= cuenta.getCodigo()%></td>
                     </tr>
@@ -69,6 +69,9 @@
                     %>
                 </tbody>
             </table>
+            <form method="GET" action="Reporte4G">
+                <input type="submit" class="btn btn-primary" value="Exportar"/>
+            </form>
         </div>
     </body>
 </html>

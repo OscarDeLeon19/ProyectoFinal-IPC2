@@ -16,6 +16,18 @@
         <servlet-name>Reporte1G</servlet-name>
         <servlet-class>exportaciones.Reporte1G</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Reporte4G</servlet-name>
+        <servlet-class>exportaciones.Reporte4G</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FuncionesCajero</servlet-name>
+        <servlet-class>servelts.FuncionesCajero</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReportesCajero</servlet-name>
+        <servlet-class>servelts.ReportesCajero</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Controlador</servlet-name>
         <url-pattern>/Controlador</url-pattern>
@@ -31,6 +43,18 @@
     <servlet-mapping>
         <servlet-name>Reporte1G</servlet-name>
         <url-pattern>/Reporte1G</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Reporte4G</servlet-name>
+        <url-pattern>/Reporte4G</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FuncionesCajero</servlet-name>
+        <url-pattern>/FuncionesCajero</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReportesCajero</servlet-name>
+        <url-pattern>/ReportesCajero</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
