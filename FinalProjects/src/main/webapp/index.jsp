@@ -41,6 +41,25 @@
             ${error}
         </div>
         <div>
+            <h1>Login Cliente</h1>
+            <form action ="Controlador" method = "POST" class="form-group">
+                <div class="form-group">
+                    <label>Codigo</label>
+                    <input type = "text" name = "txcodigo"  class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type = "password" name = "pass"  class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="submit" name ="accion" value="Acceso Cliente" class="btn btn-primary">
+                </div>
+            </form>
+            <div>
+                <button class="btn btn-primary" onclick="salirCajero()()">Salir</button>
+            </div>
+        </div>
+        <div>
             <h1>Login Gerente</h1>
             <form action ="Controlador" method = "POST" class="form-group">
                 <div class="form-group">

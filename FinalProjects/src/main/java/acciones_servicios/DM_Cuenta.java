@@ -1,5 +1,6 @@
 package acciones_servicios;
 
+import acciones_usuarios.DM_Cliente;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -8,6 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import principal.Conexion;
 import servicios.Cuenta;
+import servicios.Solicitud;
+import usuarios.Cliente;
 
 public class DM_Cuenta {
 
@@ -96,7 +99,9 @@ public class DM_Cuenta {
             rs = PrSt.executeQuery();
             while (rs.next()) {
                 cuenta.setCodigo(rs.getString("Codigo"));
+                cuenta.setCreacion(rs.getDate("Creacion"));
                 cuenta.setCredito(rs.getDouble("Credito"));
+                cuenta.setCodigo_cliente(rs.getString("Codigo_Cliente"));
             }
         } catch (SQLException e) {
             System.out.println(e.toString());
@@ -118,8 +123,8 @@ public class DM_Cuenta {
             System.out.println(e.toString());
         }
     }
-    
-    public void realizarRetiro (String codigo_cuenta, double credito) {
+
+    public void realizarRetiro(String codigo_cuenta, double credito) {
         try {
             PreparedStatement PrSt;
             String Query = "UPDATE Cuenta SET Credito = ? WHERE Codigo = ?";
@@ -131,4 +136,84 @@ public class DM_Cuenta {
             System.out.println(e.toString());
         }
     }
+
+    public ArrayList<Cuenta> verCuentasDeCliente(String codigo_cliente) {
+        ArrayList<Cuenta> lista = new ArrayList<>();
+        try {
+            PreparedStatement PrSt;
+            ResultSet rs = null;
+            String Query = "SELECT * FROM Cuenta where Codigo_Cliente = ?";
+            PrSt = conexion.prepareStatement(Query);
+            PrSt.setString(1, codigo_cliente);
+            rs = PrSt.executeQuery();
+            while (rs.next()) {
+                Cuenta cuenta = new Cuenta();
+                cuenta.setCodigo(rs.getString("Codigo"));
+                cuenta.setCreacion(rs.getDate("Creacion"));
+                cuenta.setCredito(rs.getDouble("Credito"));
+                lista.add(cuenta);
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return lista;
+    }
+
+    public String validarAsociacion(String nombre, String dpi, String codigo_cuenta, String codigo_cliente) {
+        String mensaje = "";
+        DM_Cliente dmcli = new DM_Cliente();
+        DM_Solicitud dmsol = new DM_Solicitud();
+        try {
+            Cliente cliente = dmcli.validarCliente(nombre, dpi);
+            PreparedStatement PrSt;
+            ResultSet rs = null;
+            String Query = "SELECT * FROM Cuenta WHERE Codigo = ?";
+            PrSt = conexion.prepareStatement(Query);
+            PrSt.setString(1, codigo_cuenta);
+            if (cliente != null) {
+                rs = PrSt.executeQuery();
+                if (rs.next()) {
+                    java.util.Date d = new java.util.Date();
+                    java.sql.Date fecha = new java.sql.Date(d.getTime());
+                    Solicitud solicitud = new Solicitud();
+                    solicitud.setEmisor(codigo_cliente);
+                    solicitud.setReceptor(cliente.getCodigo());
+                    solicitud.setCodigo_cuenta(codigo_cuenta);
+                    solicitud.setEstado("Pendiente");
+                    solicitud.setFecha(fecha);
+                    mensaje = dmsol.agregarSolicitud(solicitud);
+                } else {
+                    mensaje = "La cuenta no existe";
+                }
+            } else {
+                mensaje = "El dueño de la cuenta no existe";
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return mensaje;
+    }
+
+    public ArrayList<Cuenta> obtenerCuentasAsociadas(String codigo_cliente) {
+        ArrayList<Cuenta> lista = new ArrayList<>();
+        try {
+            PreparedStatement PrSt;
+            PreparedStatement PrSt2;
+            ResultSet rs = null;
+            ResultSet rs2 = null;
+            String Query = "SELECT * FROM Solicitud WHERE Codigo_ClienteS = ? AND Estado = 'Aceptada'";
+            PrSt = conexion.prepareStatement(Query);
+            PrSt.setString(1, codigo_cliente);
+            rs = PrSt.executeQuery();
+            while (rs.next()) {
+                Cuenta cuenta = obtenerCuenta(rs.getString("Codigo_Cuenta"));
+                lista.add(cuenta);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return lista;
+    }
+    
+    
 }

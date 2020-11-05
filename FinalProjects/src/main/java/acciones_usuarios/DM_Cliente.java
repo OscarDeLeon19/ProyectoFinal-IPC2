@@ -52,7 +52,7 @@ public class DM_Cliente {
         return mensaje;
     }
 
-    public Cliente ingresarCajero(String codigo, String password) {
+    public Cliente ingresarCliente(String codigo, String password) {
         Cliente cliente = null;
         try {
             String contraseña = encriptar.ObtenerEncriptacion(password);
@@ -123,7 +123,7 @@ public class DM_Cliente {
             PrSt.setString(2, codigo);
             int resultado = PrSt.executeUpdate();
             if (resultado > 0) {
-                mensaje = "Modificaste la contraseña de Cajero Codigo: " + codigo;
+                mensaje = "Modificaste la contraseña de Cliente Codigo: " + codigo;
             } else {
                 mensaje = "Fallo al modificar la contraseña";
             }
@@ -220,6 +220,35 @@ public class DM_Cliente {
             String Query = "SELECT * FROM Cliente WHERE Codigo = ?";
             PrSt = conexion.prepareStatement(Query);
             PrSt.setString(1, codigo);
+            rs = PrSt.executeQuery();
+            while (rs.next()){
+                cliente = new Cliente();
+                cliente.setCodigo(rs.getString("Codigo"));
+                cliente.setNombre(rs.getString("Nombre"));
+                cliente.setDpi(rs.getString("DPI"));
+                cliente.setNacimiento(rs.getDate("Nacimiento"));
+                cliente.setDireccion(rs.getString("Direccion"));
+                cliente.setSexo(rs.getString("Sexo"));
+                cliente.setContraseña(rs.getString("Contraseña"));
+                cliente.setPdf_dpi(rs.getString("PDF_DPI"));
+            }
+            PrSt.close();
+            rs.close();
+            return cliente;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
+    public Cliente validarCliente(String nombre, String dpi) {
+        Cliente cliente = null;
+        try {
+            PreparedStatement PrSt;
+            ResultSet rs = null;
+            String Query = "SELECT * FROM Cliente WHERE Nombre = ? AND DPI = ?";
+            PrSt = conexion.prepareStatement(Query);
+            PrSt.setString(1, nombre);
+            PrSt.setString(2, dpi);
             rs = PrSt.executeQuery();
             while (rs.next()){
                 cliente = new Cliente();

@@ -28,6 +28,10 @@
         <servlet-name>ReportesCajero</servlet-name>
         <servlet-class>servelts.ReportesCajero</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FuncionesCliente</servlet-name>
+        <servlet-class>servelts.FuncionesCliente</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Controlador</servlet-name>
         <url-pattern>/Controlador</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>ReportesCajero</servlet-name>
         <url-pattern>/ReportesCajero</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FuncionesCliente</servlet-name>
+        <url-pattern>/FuncionesCliente</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

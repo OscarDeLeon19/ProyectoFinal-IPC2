@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import principal.Carga;
 import usuarios.Cajero;
+import usuarios.Cliente;
 import usuarios.Gerente;
 
 /**
@@ -128,6 +129,16 @@ public class Controlador extends HttpServlet {
             acceder = "cajero/interfaz.jsp";
         } else if (accion.equalsIgnoreCase("ReportesC")) {
             acceder = "cajero/reportes.jsp";
+        } else if (accion.equalsIgnoreCase("PrimeroL")) {
+            acceder = "cliente/interfaz.jsp";
+        } else if (accion.equalsIgnoreCase("ReportesL")) {
+            acceder = "cliente/reportes.jsp";
+        } else if (accion.equalsIgnoreCase("FuncionesL")) {
+            acceder = "cliente/funciones.jsp";
+        } else if (accion.equalsIgnoreCase("CambiarHoraL")) {
+            int hora = random.nextInt(23);
+            request.getSession().setAttribute("hora", hora);
+            acceder = "cliente/interfaz.jsp";
         }
         RequestDispatcher pagina = request.getRequestDispatcher(acceder);
         pagina.forward(request, response);
@@ -183,6 +194,22 @@ public class Controlador extends HttpServlet {
                 request.getSession().setAttribute("hora", hora);
                 System.out.println(hora);
                 acceder = "cajero/interfaz.jsp";
+            } else {
+                String mensaje = "Codigo o contraseña incorrecta";
+                request.getSession().setAttribute("error", mensaje);
+                acceder = "index.jsp";
+
+            }
+        } else if (accion.equalsIgnoreCase("Acceso Cliente")) {
+            String codigo = request.getParameter("txcodigo");
+            String contraseña = request.getParameter("pass");
+            Cliente cliente = dmcli.ingresarCliente(codigo, contraseña);
+            if (cliente != null) {
+                request.getSession().setAttribute("login_cliente", cliente);
+                int hora = random.nextInt(23);
+                request.getSession().setAttribute("hora", hora);
+                System.out.println(hora);
+                acceder = "cliente/interfaz.jsp";
             } else {
                 String mensaje = "Codigo o contraseña incorrecta";
                 request.getSession().setAttribute("error", mensaje);
