@@ -85,6 +85,12 @@
                     %>
                 </tbody>
             </table>
+            <form method="GET" action="Reporte6G">
+                <div class="form-group">
+                    <input type = "hidden" name = "nomCliente" value="${nomCliente}" class="form-control">
+                </div>
+                <input type="submit" class="btn btn-primary" value="Exportar"/>
+            </form>
         </div>
     </body>
 </html>

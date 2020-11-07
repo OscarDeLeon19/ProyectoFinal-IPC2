@@ -36,6 +36,34 @@
         <servlet-name>ReportesCliente</servlet-name>
         <servlet-class>servelts.ReportesCliente</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Reporte2G</servlet-name>
+        <servlet-class>exportaciones.Reporte2G</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Reporte3G</servlet-name>
+        <servlet-class>exportaciones.Reporte3G</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Reporte5G</servlet-name>
+        <servlet-class>exportaciones.Reporte5G</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Reporte6G</servlet-name>
+        <servlet-class>exportaciones.Reporte6G</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Reporte7G</servlet-name>
+        <servlet-class>exportaciones.Reporte7G</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Reporte1C</servlet-name>
+        <servlet-class>exportaciones.Reporte1C</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Reporte2C</servlet-name>
+        <servlet-class>exportaciones.Reporte2C</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Controlador</servlet-name>
         <url-pattern>/Controlador</url-pattern>
@@ -71,6 +99,34 @@
     <servlet-mapping>
         <servlet-name>ReportesCliente</servlet-name>
         <url-pattern>/ReportesCliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Reporte2G</servlet-name>
+        <url-pattern>/Reporte2G</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Reporte3G</servlet-name>
+        <url-pattern>/Reporte3G</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Reporte5G</servlet-name>
+        <url-pattern>/Reporte5G</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Reporte6G</servlet-name>
+        <url-pattern>/Reporte6G</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Reporte7G</servlet-name>
+        <url-pattern>/Reporte7G</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Reporte1C</servlet-name>
+        <url-pattern>/Reporte1C</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Reporte2C</servlet-name>
+        <url-pattern>/Reporte2C</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -85,6 +85,15 @@
                     %>
                 </tbody>
             </table>
+            <form method="GET" action="Reporte7G">
+                <div class="form-group">
+                    <input type = "hidden" name = "fecha1" value="${fecha1}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type = "hidden" name = "fecha2" value="${fecha2}" class="form-control">
+                </div>
+                <input type="submit" class="btn btn-primary" value="Exportar"/>
+            </form>
         </div>
     </body>
 </html>

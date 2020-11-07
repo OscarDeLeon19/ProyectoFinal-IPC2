@@ -44,13 +44,13 @@
         %>
         <div style="width: 1000px; border: 1px solid black; padding: 50px" class="container h-100">
             <form action ="ReportesCajero" method = "POST" class="form-group">
-                <h3>Depositos</h3>
+                <h3>Ingresar el intervalo de fechas</h3>
                 <div class="form-group">
-                    <label>Codigo de la Cuenta</label>
+                    <label>Fecha No.1</label>
                     <input type = "date" name = "fecha1" value="${fecha1}" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label>Monto a depositar</label>
+                    <label>Fecha No.2</label>
                     <input type = "date" name = "fecha2" value="${fecha2}" class="form-control">
                 </div>
                 <div class="form-group">
@@ -59,7 +59,7 @@
             </form>
         </div>
         <div style="width: 1000px; border: 1px solid black" class="container h-100">
-            <h1>Transaccion realizadas en el dia</h1>
+            <h2>Transacciones realizadas durante el intervalo de tiempo</h2>
             <h2>Balance Final: ${balance}</h2>
             <table class="table">
                 <thead>
@@ -86,6 +86,15 @@
                     %>
                 </tbody>
             </table>
+            <form method="GET" action="Reporte2C">
+                <div class="form-group">
+                    <input type = "hidden" name = "fecha1" value="${fecha1}" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type = "hidden" name = "fecha2" value="${fecha2}" class="form-control">
+                </div>
+                <input type="submit" class="btn btn-primary" value="Exportar"/>
+            </form>
         </div>
     </body>
 </html>

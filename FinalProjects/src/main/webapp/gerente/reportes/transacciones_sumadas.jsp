@@ -43,7 +43,8 @@
             ArrayList<Transaccion> lista = (ArrayList<Transaccion>) request.getSession().getAttribute("transacciones_sumadas");
         %> 
         <div style="width: 1000px; border: 1px solid black" class="container h-100">
-            <h1>Transacciones sumadas en cada cuenta</h1>
+            <h2>Transacciones sumadas en cada cuenta</h2>
+            <h2>Limite establecido: ${limite2}</h2>
             <table class="table">
                 <thead>
                     <tr>
@@ -67,6 +68,9 @@
                     %>
                 </tbody>
             </table>
+            <form method="GET" action="Reporte3G">
+                <input type="submit" class="btn btn-primary" value="Exportar"/>
+            </form>
         </div>
     </body>
 </html>

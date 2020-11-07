@@ -42,6 +42,8 @@
             ArrayList<Transaccion> lista = (ArrayList<Transaccion>) request.getSession().getAttribute("transacciones");
         %> 
         <div style="width: 1000px; border: 1px solid black" class="container h-100">
+            <h2>Transacciones mayores al limite establecido</h2>
+            <h2>Limite Establecido: ${limite1}</h2>
             <table class="table">
                 <thead>
                     <tr>
@@ -61,7 +63,7 @@
                                 Transaccion transaccion = lista.get(i);
                     %>
                     <tr>
-                        <th scope="row"><%= transaccion.getCodigo() %></th>
+                        <th scope="row"><%= transaccion.getCodigo()%></th>
                         <td><%= transaccion.getCodigo_cuenta()%></td>
                         <td><%= transaccion.getFecha()%></td> 
                         <td><%= transaccion.getHora()%></td>
@@ -75,6 +77,9 @@
                     %>
                 </tbody>
             </table>
+            <form method="GET" action="Reporte2G">
+                <input type="submit" class="btn btn-primary" value="Exportar"/>
+            </form>
         </div>
     </body>
 </html>

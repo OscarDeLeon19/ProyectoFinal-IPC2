@@ -80,6 +80,7 @@ public class Controlador extends HttpServlet {
         String accion = request.getParameter("accion");
         if (accion.equalsIgnoreCase("Salir")) {
             request.getSession().setAttribute("error", null);
+            request.getSession().setAttribute("entidad", null);
             acceder = "index.jsp";
         } else if (accion.equalsIgnoreCase("FuncionesG")) {
             int numero = Integer.parseInt((String.valueOf(request.getSession().getAttribute("hora"))));
@@ -216,6 +217,19 @@ public class Controlador extends HttpServlet {
                 acceder = "index.jsp";
 
             }
+        } else if (accion.equalsIgnoreCase("Ingresar Gerente")) {
+            request.getSession().setAttribute("entidad", "Gerente");
+            acceder = "index.jsp";
+        } else if (accion.equalsIgnoreCase("Ingresar Cajero")) {
+            request.getSession().setAttribute("entidad", "Cajero");
+            acceder = "index.jsp";
+        } else if (accion.equalsIgnoreCase("Ingresar Cliente")) {
+            request.getSession().setAttribute("entidad", "Cliente");
+            acceder = "index.jsp";
+        } else if (accion.equalsIgnoreCase("Salir")) {
+            request.getSession().setAttribute("entidad", null);
+            request.getSession().setAttribute("error", null);
+            acceder = "index.jsp";
         }
         RequestDispatcher pagina = request.getRequestDispatcher(acceder);
         pagina.forward(request, response);

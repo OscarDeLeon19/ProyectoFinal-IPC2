@@ -121,7 +121,7 @@ public class DM_Transaccion {
             nombre = "%" + nombre + "%";
             PreparedStatement PrSt;
             ResultSet rs = null;
-            String Query = "select t.Codigo as Codigo,  t.Codigo_Cuenta as Codigo_Cuenta, t.Fecha as Fecha, t.Monto as Monto, l.Nombre as Nombre from Transaccion t join Cuenta c join Cliente l on c.Codigo = t.Codigo_Cuenta and c.Codigo_Cliente = l.Codigo where l.Nombre like ?";
+            String Query = "select t.Codigo as Codigo,  t.Codigo_Cuenta as Codigo_Cuenta, t.Fecha as Fecha, t.Monto as Monto, l.Nombre as Nombre from Transaccion t join Cuenta c join Cliente l on c.Codigo = t.Codigo_Cuenta and c.Codigo_Cliente = l.Codigo where l.Nombre like ? order by t.Fecha desc";
             PrSt = conexion.prepareStatement(Query);
             PrSt.setString(1, nombre);
             rs = PrSt.executeQuery();
