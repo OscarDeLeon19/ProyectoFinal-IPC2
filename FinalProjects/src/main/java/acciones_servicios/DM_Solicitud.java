@@ -57,11 +57,12 @@ public class DM_Solicitud {
         try {
             PreparedStatement PrSt;
             ResultSet rs = null;
-            String Query = "SELECT * FROM Solicitud WHERE Codigo_ClienteS = ? AND Codigo_ClienteR = ? AND Estado = ?";
+            String Query = "SELECT * FROM Solicitud WHERE Codigo_ClienteS = ? AND Codigo_ClienteR = ? AND Codigo_Cuenta = ? AND Estado = ?";
             PrSt = conexion.prepareStatement(Query);
             PrSt.setString(1, solicitud.getEmisor());
             PrSt.setString(2, solicitud.getReceptor());
-            PrSt.setString(3, solicitud.getEstado());
+            PrSt.setString(3, solicitud.getCodigo_cuenta());
+            PrSt.setString(4, solicitud.getEstado());
             rs = PrSt.executeQuery();
             while (rs.next()) {
                 comprobacion = true;
@@ -97,14 +98,14 @@ public class DM_Solicitud {
         try {
             PreparedStatement PrSt;
             ResultSet rs = null;
-            String Query = "SELECT * FROM Solicitud WHERE Codigo_ClienteS = ?, Codigo_Cuenta = ? AND Estado = 'Aceptada'";
+            String Query = "SELECT * FROM Solicitud WHERE Codigo_ClienteS = ? AND Codigo_Cuenta = ? AND Estado = 'Aceptada'";
             PrSt = conexion.prepareStatement(Query);
             PrSt.setString(1, solicitud.getEmisor());
             PrSt.setString(2, solicitud.getCodigo_cuenta());
             rs = PrSt.executeQuery();
             if (rs.next()) {
                 comprobacion = true;
-            } 
+            }
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
@@ -154,8 +155,8 @@ public class DM_Solicitud {
         }
         return mensaje;
     }
-    
-     public String rechazarSolicitud(int id) {
+
+    public String rechazarSolicitud(int id) {
         String mensaje = "";
         try {
             PreparedStatement PrSt;
@@ -173,6 +174,53 @@ public class DM_Solicitud {
         }
         return mensaje;
     }
-     
-     
+
+    public ArrayList<Solicitud> verSolicitudesRealizadas(String codigo) {
+        ArrayList<Solicitud> lista = new ArrayList<>();
+        try {
+            PreparedStatement PrSt;
+            ResultSet rs = null;
+            String Query = "SELECT s.ID, c.Nombre, s.Codigo_Cuenta, s.Estado, s.Fecha FROM Solicitud s join Cliente c on c.Codigo = s.Codigo_ClienteR WHERE s.Codigo_ClienteS = ?";
+            PrSt = conexion.prepareStatement(Query);
+            PrSt.setString(1, codigo);
+            rs = PrSt.executeQuery();
+            while (rs.next()) {
+                Solicitud solicitud = new Solicitud();
+                solicitud.setId(rs.getInt("ID"));
+                solicitud.setReceptor(rs.getString("Nombre"));
+                solicitud.setCodigo_cuenta(rs.getString("Codigo_Cuenta"));
+                solicitud.setEstado(rs.getString("Estado"));
+                solicitud.setFecha(rs.getDate("Fecha"));
+                lista.add(solicitud);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return lista;
+    }
+    
+    public ArrayList<Solicitud> verSolicitudesRecibidas(String codigo) {
+        ArrayList<Solicitud> lista = new ArrayList<>();
+        try {
+            PreparedStatement PrSt;
+            ResultSet rs = null;
+            String Query = "SELECT s.ID, c.Nombre, s.Codigo_Cuenta, s.Estado, s.Fecha FROM Solicitud s join Cliente c on c.Codigo = s.Codigo_ClienteS WHERE s.Codigo_ClienteR = ?";
+            PrSt = conexion.prepareStatement(Query);
+            PrSt.setString(1, codigo);
+            rs = PrSt.executeQuery();
+            while (rs.next()) {
+                Solicitud solicitud = new Solicitud();
+                solicitud.setId(rs.getInt("ID"));
+                solicitud.setEmisor(rs.getString("Nombre"));
+                solicitud.setCodigo_cuenta(rs.getString("Codigo_Cuenta"));
+                solicitud.setEstado(rs.getString("Estado"));
+                solicitud.setFecha(rs.getDate("Fecha"));
+                lista.add(solicitud);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return lista;
+    }
+
 }

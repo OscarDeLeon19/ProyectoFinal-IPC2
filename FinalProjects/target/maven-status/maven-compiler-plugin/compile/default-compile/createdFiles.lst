@@ -19,6 +19,7 @@ acciones_usuarios\DM_Cajero.class
 principal\Carga.class
 acciones_servicios\DM_Historial.class
 servicios\Solicitud.class
+servelts\ReportesCliente.class
 acciones_usuarios\DM_Gerente.class
 principal\Encriptar.class
 servelts\FuncionesGerente.class

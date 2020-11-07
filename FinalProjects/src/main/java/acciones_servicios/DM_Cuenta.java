@@ -215,5 +215,24 @@ public class DM_Cuenta {
         return lista;
     }
     
-    
+    public Cuenta obtenerCuentaConMasDinero(String codigo_cliente) {
+        Cuenta cuenta = new Cuenta();
+        try {
+            PreparedStatement PrSt;
+            ResultSet rs = null;
+            String Query = "SELECT * FROM Cuenta WHERE Codigo_Cliente = ? order by Credito desc limit 1";
+            PrSt = conexion.prepareStatement(Query);
+            PrSt.setString(1, codigo_cliente);
+            rs = PrSt.executeQuery();
+            while (rs.next()) {
+                cuenta.setCodigo(rs.getString("Codigo"));
+                cuenta.setCreacion(rs.getDate("Creacion"));
+                cuenta.setCredito(rs.getDouble("Credito"));
+                cuenta.setCodigo_cliente(rs.getString("Codigo_Cliente"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return cuenta;
+    }
 }

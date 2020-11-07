@@ -32,6 +32,10 @@
         <servlet-name>FuncionesCliente</servlet-name>
         <servlet-class>servelts.FuncionesCliente</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ReportesCliente</servlet-name>
+        <servlet-class>servelts.ReportesCliente</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Controlador</servlet-name>
         <url-pattern>/Controlador</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>FuncionesCliente</servlet-name>
         <url-pattern>/FuncionesCliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReportesCliente</servlet-name>
+        <url-pattern>/ReportesCliente</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

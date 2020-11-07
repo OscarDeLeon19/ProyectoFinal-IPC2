@@ -16,7 +16,7 @@ public class DM_Cajero {
     private Conexion clase = new Conexion();
     private Connection conexion = clase.getConnection();
     private Encriptar encriptar = new Encriptar();
-    private java.util.Date fechaActual = new java.util.Date(); 
+    private java.util.Date fechaActual = new java.util.Date();
     private DM_Historial dmhis = new DM_Historial();
 
     public DM_Cajero() {
@@ -99,7 +99,7 @@ public class DM_Cajero {
                 historial.setEntidad("Cajero");
                 java.sql.Date fecha = new java.sql.Date(fechaActual.getTime());
                 historial.setFecha(fecha);
-                dmhis.AgregarHistorial(historial);                
+                dmhis.AgregarHistorial(historial);
             } else {
                 mensaje = "Fallo al modificar los datos";
             }
@@ -109,7 +109,7 @@ public class DM_Cajero {
         }
         return mensaje;
     }
-    
+
     public String modificarContraseña(String codigo, String contraseña) {
         String mensaje = "";
         try {
@@ -150,7 +150,7 @@ public class DM_Cajero {
         }
         return eliminacion;
     }
-    
+
     public ArrayList<Cajero> verCajeros() {
         ArrayList<Cajero> lista = new ArrayList<>();
         try {
@@ -159,7 +159,7 @@ public class DM_Cajero {
             String Query = "SELECT * FROM Cajero";
             PrSt = conexion.prepareStatement(Query);
             rs = PrSt.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 Cajero cajero = new Cajero();
                 cajero.setCodigo(rs.getString("Codigo"));
                 cajero.setNombre(rs.getString("Nombre"));
@@ -168,7 +168,9 @@ public class DM_Cajero {
                 cajero.setDireccion(rs.getString("Direccion"));
                 cajero.setSexo(rs.getString("Sexo"));
                 cajero.setContraseña(rs.getString("Contraseña"));
-                lista.add(cajero);
+                if (!"101".equals(cajero.getCodigo())) {
+                    lista.add(cajero);
+                }
             }
             PrSt.close();
             rs.close();
@@ -177,7 +179,7 @@ public class DM_Cajero {
             return lista;
         }
     }
-    
+
     public ArrayList<Cajero> verCajerosPorNombre(String nombre) {
         ArrayList<Cajero> lista = new ArrayList<>();
         try {
@@ -188,7 +190,7 @@ public class DM_Cajero {
             PrSt = conexion.prepareStatement(Query);
             PrSt.setString(1, nombre);
             rs = PrSt.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 Cajero cajero = new Cajero();
                 cajero.setCodigo(rs.getString("Codigo"));
                 cajero.setNombre(rs.getString("Nombre"));
@@ -197,7 +199,9 @@ public class DM_Cajero {
                 cajero.setDireccion(rs.getString("Direccion"));
                 cajero.setSexo(rs.getString("Sexo"));
                 cajero.setContraseña(rs.getString("Contraseña"));
-                lista.add(cajero);
+                if (!"101".equals(cajero.getCodigo())) {
+                    lista.add(cajero);
+                }
             }
             PrSt.close();
             rs.close();
@@ -206,7 +210,7 @@ public class DM_Cajero {
             return lista;
         }
     }
-    
+
     public Cajero verCajeroPorCodigo(String codigo) {
         Cajero cajero = null;
         try {
@@ -216,7 +220,7 @@ public class DM_Cajero {
             PrSt = conexion.prepareStatement(Query);
             PrSt.setString(1, codigo);
             rs = PrSt.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 cajero = new Cajero();
                 cajero.setCodigo(rs.getString("Codigo"));
                 cajero.setNombre(rs.getString("Nombre"));

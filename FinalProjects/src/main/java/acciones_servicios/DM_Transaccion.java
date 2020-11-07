@@ -5,7 +5,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import principal.Conexion;
 import servicios.Transaccion;
@@ -223,5 +222,89 @@ public class DM_Transaccion {
             balance = balance + transaccion.getMonto();
         }
         return balance;
+    }
+
+    public ArrayList<Transaccion> verUltimas15Transacciones(String codigo) {
+        ArrayList<Transaccion> lista = new ArrayList<>();
+        try {
+            PreparedStatement PrSt;
+            ResultSet rs = null;
+            String Query = "SELECT t.Codigo, t.Codigo_Cuenta, t.Fecha, t.Hora, t.Tipo, t.Monto FROM Transaccion t join Cuenta c on t.Codigo_Cuenta = c.Codigo where c.Codigo_Cliente = ? order by t.Monto desc Limit 15";
+            PrSt = conexion.prepareStatement(Query);
+            PrSt.setString(1, codigo);
+            rs = PrSt.executeQuery();
+            while (rs.next()) {
+                Transaccion transaccion = new Transaccion();
+                transaccion.setCodigo(rs.getInt("Codigo"));
+                transaccion.setCodigo_cuenta(rs.getString("Codigo_Cuenta"));
+                transaccion.setFecha(rs.getDate("Fecha"));
+                transaccion.setHora(rs.getString("Hora"));
+                transaccion.setTipo(rs.getString("Tipo"));
+                transaccion.setMonto(rs.getDouble("Monto"));
+                lista.add(transaccion);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return lista;
+    }
+
+    public ArrayList<Transaccion> verTransaccionesEnIntervalo(String codigo, String f1, String f2) {
+        ArrayList<Transaccion> lista = new ArrayList<>();
+        try {
+            Date fecha1 = Date.valueOf(f1);
+            Date fecha2 = Date.valueOf(f2);
+            PreparedStatement PrSt;
+            ResultSet rs = null;
+            String Query = "SELECT t.Codigo, t.Codigo_Cuenta, t.Fecha, t.Hora, t.Tipo, t.Monto FROM Transaccion t join Cuenta c on t.Codigo_Cuenta = c.Codigo where c.Codigo_Cliente = ? and t.Fecha between ? and ? order by t.Fecha desc";
+            PrSt = conexion.prepareStatement(Query);
+            PrSt.setString(1, codigo);
+            PrSt.setDate(2, fecha1);
+            PrSt.setDate(3, fecha2);
+            rs = PrSt.executeQuery();
+            while (rs.next()) {
+                Transaccion transaccion = new Transaccion();
+                transaccion.setCodigo(rs.getInt("Codigo"));
+                transaccion.setCodigo_cuenta(rs.getString("Codigo_Cuenta"));
+                transaccion.setFecha(rs.getDate("Fecha"));
+                transaccion.setHora(rs.getString("Hora"));
+                transaccion.setTipo(rs.getString("Tipo"));
+                transaccion.setMonto(rs.getDouble("Monto"));
+                lista.add(transaccion);
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return lista;
+    }
+
+    public ArrayList<Transaccion> obtenerTransaccionesDeCuenta(String codigo_cuenta, String f1) {
+        ArrayList<Transaccion> lista = new ArrayList<>();
+        try {
+            java.util.Date d = new java.util.Date();
+            java.sql.Date fecha2 = new java.sql.Date(d.getTime());
+            Date fecha1 = Date.valueOf(f1);
+            PreparedStatement PrSt;
+            ResultSet rs = null;
+            String Query = "select * from Transaccion WHERE Codigo_Cuenta = ? AND Fecha BETWEEN ? AND ? ORDER BY Fecha DESC";
+            PrSt = conexion.prepareStatement(Query);
+            PrSt.setString(1, codigo_cuenta);
+            PrSt.setDate(2, fecha1);
+            PrSt.setDate(3, fecha2);
+            rs = PrSt.executeQuery();
+            while (rs.next()) {
+                Transaccion transaccion = new Transaccion();
+                transaccion.setCodigo(rs.getInt("Codigo"));
+                transaccion.setCodigo_cuenta(rs.getString("Codigo_Cuenta"));
+                transaccion.setFecha(rs.getDate("Fecha"));
+                transaccion.setHora(rs.getString("Hora"));
+                transaccion.setTipo(rs.getString("Tipo"));
+                transaccion.setMonto(rs.getDouble("Monto"));
+                lista.add(transaccion);
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return lista;
     }
 }
