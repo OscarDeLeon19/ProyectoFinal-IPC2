@@ -38,7 +38,7 @@
                 </div>
             </div>
         </nav>
-                    <%
+        <%
             ArrayList<Transaccion> lista = (ArrayList<Transaccion>) request.getSession().getAttribute("transacciones");
         %>
         <div style="width: 1000px; border: 1px solid black; padding: 50px" class="container h-100">
@@ -57,37 +57,43 @@
             <h2>Cuenta con mas dinero: ${cuenta}</h2>
             <h2>Credito de la cuenta: ${credito}</h2>
             <h3>Transacciones de la cuenta </h1>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Codigo de la transacion</th>
-                        <th scope="col">Codigo de la cuenta</th> 
-                        <th scope="col">Fecha</th> 
-                        <th scope="col">Hora</th> 
-                        <th scope="col">Tipo</th> 
-                        <th scope="col">Monto</th> 
-                    </tr>
-                </thead>
-                <tbody>
-                    <%
-                        if (lista.size() > 0) {
-                            for (int i = 0; i < lista.size(); i++) {
-                                Transaccion transaccion = lista.get(i);
-                    %>
-                    <tr>
-                        <td><%= transaccion.getCodigo()%></td>
-                        <td><%= transaccion.getCodigo_cuenta()%></td>
-                        <td><%= transaccion.getFecha()%></td>
-                        <td><%= transaccion.getHora()%></td>
-                        <td><%= transaccion.getTipo()%></td>
-                        <td><%= transaccion.getMonto()%></td>
-                    </tr>
-                    <%
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Codigo de la transacion</th>
+                            <th scope="col">Codigo de la cuenta</th> 
+                            <th scope="col">Fecha</th> 
+                            <th scope="col">Hora</th> 
+                            <th scope="col">Tipo</th> 
+                            <th scope="col">Monto</th> 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%
+                            if (lista.size() > 0) {
+                                for (int i = 0; i < lista.size(); i++) {
+                                    Transaccion transaccion = lista.get(i);
+                        %>
+                        <tr>
+                            <td><%= transaccion.getCodigo()%></td>
+                            <td><%= transaccion.getCodigo_cuenta()%></td>
+                            <td><%= transaccion.getFecha()%></td>
+                            <td><%= transaccion.getHora()%></td>
+                            <td><%= transaccion.getTipo()%></td>
+                            <td><%= transaccion.getMonto()%></td>
+                        </tr>
+                        <%
+                                }
                             }
-                        }
-                    %>
-                </tbody>
-            </table>
+                        %>
+                    </tbody>
+                </table>
+                <form method="GET" action="Reporte3L">
+                    <div class="form-group">
+                        <input type = "hidden" name = "fecha" value="${fecha}" class="form-control">
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Exportar"/>
+                </form>
         </div>
     </body>
 </html>

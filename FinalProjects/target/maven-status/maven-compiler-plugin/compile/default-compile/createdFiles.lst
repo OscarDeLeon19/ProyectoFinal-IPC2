@@ -1,4 +1,6 @@
 acciones_servicios\DM_Cuenta.class
+exportaciones\Reporte1C.class
+exportaciones\Reporte2C.class
 servicios\Transaccion.class
 servelts\FuncionesCajero.class
 principal\Conexion.class
@@ -9,7 +11,9 @@ servelts\FuncionesCliente.class
 usuarios\Cajero.class
 servelts\ReportesGerente.class
 servicios\Cuenta.class
+exportaciones\Reporte5G.class
 exportaciones\Reporte4G.class
+exportaciones\Reporte6G.class
 usuarios\Cliente.class
 acciones_usuarios\DM_Cliente.class
 acciones_servicios\DM_Solicitud.class
@@ -18,10 +22,16 @@ usuarios\Gerente.class
 acciones_usuarios\DM_Cajero.class
 principal\Carga.class
 acciones_servicios\DM_Historial.class
+exportaciones\Reporte2L.class
 servicios\Solicitud.class
+exportaciones\Reporte1L.class
+exportaciones\Reporte3L.class
 servelts\ReportesCliente.class
 acciones_usuarios\DM_Gerente.class
 principal\Encriptar.class
 servelts\FuncionesGerente.class
 exportaciones\Reporte1G.class
+exportaciones\Reporte2G.class
+exportaciones\Reporte7G.class
 principal\Main.class
+exportaciones\Reporte3G.class

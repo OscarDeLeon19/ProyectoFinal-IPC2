@@ -74,6 +74,9 @@
                     %>
                 </tbody>
             </table>
+                <form method="GET" action="Reporte1L">
+                <input type="submit" class="btn btn-primary" value="Exportar"/>
+            </form>
         </div>
     </body>
 </html>

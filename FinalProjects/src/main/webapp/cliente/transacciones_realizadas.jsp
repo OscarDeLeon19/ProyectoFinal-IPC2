@@ -38,7 +38,7 @@
                 </div>
             </div>
         </nav>
-                    <%
+        <%
             ArrayList<Transaccion> lista = (ArrayList<Transaccion>) request.getSession().getAttribute("transacciones");
         %>
         <div style="width: 1000px; border: 1px solid black; padding: 50px" class="container h-100">
@@ -90,6 +90,16 @@
                     %>
                 </tbody>
             </table>
-        </div>
-    </body>
+        </table>
+        <form method="GET" action="Reporte2L">
+            <div class="form-group">
+                <input type = "hidden" name = "fecha1" value="${fecha1}" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type = "hidden" name = "fecha2" value="${fecha2}" class="form-control">
+            </div>
+            <input type="submit" class="btn btn-primary" value="Exportar"/>
+        </form>
+    </div>
+</body>
 </html>

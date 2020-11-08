@@ -64,6 +64,26 @@
         <servlet-name>Reporte2C</servlet-name>
         <servlet-class>exportaciones.Reporte2C</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Reporte1L</servlet-name>
+        <servlet-class>exportaciones.Reporte1L</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Reporte2L</servlet-name>
+        <servlet-class>exportaciones.Reporte2L</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Reporte3L</servlet-name>
+        <servlet-class>exportaciones.Reporte3L</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Reporte4L</servlet-name>
+        <servlet-class>exportaciones.Reporte4L</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Reporte5L</servlet-name>
+        <servlet-class>exportaciones.Reporte5L</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Controlador</servlet-name>
         <url-pattern>/Controlador</url-pattern>
@@ -127,6 +147,26 @@
     <servlet-mapping>
         <servlet-name>Reporte2C</servlet-name>
         <url-pattern>/Reporte2C</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Reporte1L</servlet-name>
+        <url-pattern>/Reporte1L</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Reporte2L</servlet-name>
+        <url-pattern>/Reporte2L</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Reporte3L</servlet-name>
+        <url-pattern>/Reporte3L</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Reporte4L</servlet-name>
+        <url-pattern>/Reporte4L</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Reporte5L</servlet-name>
+        <url-pattern>/Reporte5L</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
