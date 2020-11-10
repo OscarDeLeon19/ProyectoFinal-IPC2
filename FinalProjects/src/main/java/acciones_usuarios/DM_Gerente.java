@@ -21,7 +21,11 @@ public class DM_Gerente {
 
     public DM_Gerente() {
     }
-
+    /**
+     * Agrega un gerente a la base de datos
+     * @param gerente El gerente
+     * @return Mensaje o error
+     */
     public String agregarGerente(Gerente gerente) {
         String mensaje = "";
         try {
@@ -48,7 +52,12 @@ public class DM_Gerente {
         }
         return mensaje;
     }
-
+    /**
+     * Valida si existe un gerente en la base de datos
+     * @param codigo El codigo del gerente
+     * @param password La contraseña del gerente
+     * @return El gerente
+     */
     public Gerente ingresarGerente(String codigo, String password) {
         Gerente gerente = null;
         try {
@@ -77,7 +86,11 @@ public class DM_Gerente {
             return null;
         }
     }
-
+    /**
+     * Modifica los datos de un gerente en la base de datos
+     * @param gerente El gerente que se modificara
+     * @return La lista de gerentes
+     */
     public String modificarGerente(Gerente gerente) {
         String mensaje = "";
         try {
@@ -109,7 +122,12 @@ public class DM_Gerente {
         }
         return mensaje;
     }
-    
+    /**
+     * Modifica la contraseña de un gerente en la base de datos
+     * @param codigo El codigo del gerente
+     * @param contraseña La contraseña del gerente
+     * @return Mesaje o error
+     */
     public String modificarContraseña(String codigo, String contraseña) {
         String mensaje = "";
         try {
@@ -130,7 +148,11 @@ public class DM_Gerente {
         }
         return mensaje;
     }
-
+    /**
+     * Elimina a un gerente de la base de datos
+     * @param codigo El codigo del gerente
+     * @return Si se elimino o no
+     */
     public Boolean eliminarInformacion(String codigo) {
         boolean eliminacion = false;
         try {
@@ -150,7 +172,10 @@ public class DM_Gerente {
         }
         return eliminacion;
     }
-
+    /**
+     * Obtiene los gerentes de la base de datos
+     * @return La lista del gerente
+     */
     public ArrayList<Gerente> verGerentes() {
         ArrayList<Gerente> lista = new ArrayList<>();
         try {
@@ -177,7 +202,11 @@ public class DM_Gerente {
             return lista;
         }
     }
-
+    /**
+     * Obtiene los gerentes de la base de datos en base al nombre
+     * @param nombre El nombre del gerente
+     * @return La lista de gerentes
+     */
     public ArrayList<Gerente> verGerentesPorNombre(String nombre) {
         ArrayList<Gerente> lista = new ArrayList<>();
         try {
@@ -206,7 +235,11 @@ public class DM_Gerente {
             return lista;
         }
     }
-
+    /**
+     * Otiene un gerente de la base de datos en base al codigo
+     * @param codigo El codigo del gerente
+     * @return El gerente
+     */
     public Gerente verGerentePorCodigo(String codigo) {
         Gerente gerente = null;
         try {

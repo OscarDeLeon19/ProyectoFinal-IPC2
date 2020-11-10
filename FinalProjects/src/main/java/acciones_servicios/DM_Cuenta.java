@@ -19,7 +19,11 @@ public class DM_Cuenta {
 
     public DM_Cuenta() {
     }
-
+    /**
+     * Metodo utilizado para crear cuenta
+     * @param cuenta La cuenta que se agregara a la base de datos
+     * @return Mensaje o error
+     */
     public String agregarCuenta(Cuenta cuenta) {
         String mensaje = "";
         try {
@@ -36,12 +40,16 @@ public class DM_Cuenta {
             } else {
                 mensaje = "Fallo al agregar Cuenta Codigo No." + cuenta.getCodigo() + " Para el cliente con codigo: " + cuenta.getCodigo_cliente();
             }
+            PrSt.close();
         } catch (SQLException e) {
             mensaje = "Fallo al agregar Cuenta Codigo No." + cuenta.getCodigo() + " Para el cliente con codigo: " + cuenta.getCodigo_cliente() + " Error: " + e.toString();
         }
         return mensaje;
     }
-
+    /**
+     * Metodo para obtener a los clientes con mas dinero del banco
+     * @return La lista de cuentas
+     */
     public ArrayList<Cuenta> verClientesConMasDinero() {
         ArrayList<Cuenta> lista = new ArrayList<>();
         try {
@@ -57,12 +65,19 @@ public class DM_Cuenta {
                 cuenta.setCodigo(rs.getString("Nombre"));
                 lista.add(cuenta);
             }
+            PrSt.close();
+            rs.close();
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
         return lista;
     }
-
+    /**
+     * Metodo para obtener a los clientes que no han realizado transacciones en la empresa
+     * @param f1 La primera fecha
+     * @param f2 La segunda Fecha
+     * @return La lista de cuentas
+     */
     public ArrayList<Cuenta> clientesSinTransacciones(String f1, String f2) {
         ArrayList<Cuenta> lista = new ArrayList<>();
         try {
@@ -82,12 +97,18 @@ public class DM_Cuenta {
                 cuenta.setNombre(rs.getString("Nombre"));
                 lista.add(cuenta);
             }
+            PrSt.close();
+            rs.close();
         } catch (Exception e) {
             System.out.println(e.toString());
         }
         return lista;
     }
-
+    /**
+     * Obtiene una cuenta de la base de datos en base a codigo
+     * @param codigo_cuenta El codigo de la cuenta
+     * @return La cuenta
+     */
     public Cuenta obtenerCuenta(String codigo_cuenta) {
         Cuenta cuenta = new Cuenta();
         try {
@@ -103,12 +124,18 @@ public class DM_Cuenta {
                 cuenta.setCredito(rs.getDouble("Credito"));
                 cuenta.setCodigo_cliente(rs.getString("Codigo_Cliente"));
             }
+            PrSt.close();
+            rs.close();
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
         return cuenta;
     }
-
+    /**
+     * Agrega el deposito de una cuenta a la base de datos 
+     * @param codigo_cuenta El codigo de la cuenta
+     * @param monto El monto a agregar
+     */
     public void realizarDeposito(String codigo_cuenta, double monto) {
         try {
             Cuenta cuenta = obtenerCuenta(codigo_cuenta);
@@ -119,11 +146,16 @@ public class DM_Cuenta {
             PrSt.setDouble(1, credito_total);
             PrSt.setString(2, codigo_cuenta);
             PrSt.executeUpdate();
+            PrSt.close();
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
     }
-
+    /**
+     * Realiza un retiro de una cuenta en la base de datos
+     * @param codigo_cuenta El codigo de la cuenta
+     * @param credito El credito que se restara
+     */
     public void realizarRetiro(String codigo_cuenta, double credito) {
         try {
             PreparedStatement PrSt;
@@ -132,11 +164,16 @@ public class DM_Cuenta {
             PrSt.setDouble(1, credito);
             PrSt.setString(2, codigo_cuenta);
             PrSt.executeUpdate();
+            PrSt.close();
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
     }
-
+    /**
+     * Obtiene las cuentas del cliente
+     * @param codigo_cliente El codigo del cliente
+     * @return La lista de cuentas
+     */
     public ArrayList<Cuenta> verCuentasDeCliente(String codigo_cliente) {
         ArrayList<Cuenta> lista = new ArrayList<>();
         try {
@@ -153,12 +190,21 @@ public class DM_Cuenta {
                 cuenta.setCredito(rs.getDouble("Credito"));
                 lista.add(cuenta);
             }
+            PrSt.close();
+            rs.close();
         } catch (Exception e) {
             System.out.println(e.toString());
         }
         return lista;
     }
-
+    /**
+     * Comprueba todos los parametros para realizar una asociacion.
+     * @param nombre El nombre del cliente
+     * @param dpi El dpi del cliente
+     * @param codigo_cuenta El codigo de la cuenta que se asociara
+     * @param codigo_cliente El codigo del cliente emisor
+     * @return Mensaje o error
+     */
     public String validarAsociacion(String nombre, String dpi, String codigo_cuenta, String codigo_cliente) {
         String mensaje = "";
         DM_Cliente dmcli = new DM_Cliente();
@@ -188,12 +234,18 @@ public class DM_Cuenta {
             } else {
                 mensaje = "El dueño de la cuenta no existe";
             }
+            PrSt.close();
+            rs.close();
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
         return mensaje;
     }
-
+    /**
+     * Metodo para obtener las cuentas asociadas de un cliente
+     * @param codigo_cliente Codigo del cliente
+     * @return La lista de cuentas
+     */
     public ArrayList<Cuenta> obtenerCuentasAsociadas(String codigo_cliente) {
         ArrayList<Cuenta> lista = new ArrayList<>();
         try {
@@ -209,12 +261,18 @@ public class DM_Cuenta {
                 Cuenta cuenta = obtenerCuenta(rs.getString("Codigo_Cuenta"));
                 lista.add(cuenta);
             }
+            PrSt.close();
+            rs.close();
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
         return lista;
     }
-    
+    /**
+     * Obtiene la cuenta con mas dinero del cliente
+     * @param codigo_cliente El codigo del cliente
+     * @return La cuenta
+     */
     public Cuenta obtenerCuentaConMasDinero(String codigo_cliente) {
         Cuenta cuenta = new Cuenta();
         try {
@@ -230,6 +288,8 @@ public class DM_Cuenta {
                 cuenta.setCredito(rs.getDouble("Credito"));
                 cuenta.setCodigo_cliente(rs.getString("Codigo_Cliente"));
             }
+            PrSt.close();
+            rs.close();
         } catch (SQLException e) {
             System.out.println(e.toString());
         }

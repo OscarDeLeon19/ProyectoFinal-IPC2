@@ -39,7 +39,11 @@ public class Carga {
     public void setMesajes(ArrayList<String> mesajes) {
         this.mesajes = mesajes;
     }
-
+    /**
+     * Carga los datos del archivo xml a la base de datos
+     * @param file La ruta del archivo
+     * @return Mensaje de confirmacion
+     */
     public String ingresarDatos(File file) {
         String mensaje = "Datos cargados";
         try {

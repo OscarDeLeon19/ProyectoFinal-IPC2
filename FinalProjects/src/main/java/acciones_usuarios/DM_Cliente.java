@@ -23,7 +23,11 @@ public class DM_Cliente {
     public DM_Cliente() {
 
     }
-
+    /**
+     * Agrega un cliente a la base de datos
+     * @param cliente El cliente que se agregara
+     * @return Mensaje o error
+     */
     public String agregarCliente(Cliente cliente) {
         String mensaje = "";
         try {
@@ -51,7 +55,12 @@ public class DM_Cliente {
         }
         return mensaje;
     }
-
+    /**
+     * Valida que el cliente exista en la base de datos
+     * @param codigo El codigo del cliente
+     * @param password La contraseña del cliente
+     * @return El cliente
+     */
     public Cliente ingresarCliente(String codigo, String password) {
         Cliente cliente = null;
         try {
@@ -80,7 +89,12 @@ public class DM_Cliente {
             return null;
         }
     }
-
+    /**
+     * Modifica un cliente en la base de datos. Guarda el historial con el cambio realizado
+     * @param cliente El cliente que se modificara
+     * @param codigo El codigo del gerente
+     * @return Mensaje o error
+     */
     public String modificarCliente(Cliente cliente, String codigo) {
         String mensaje = "";
         try {
@@ -112,7 +126,12 @@ public class DM_Cliente {
         }
         return mensaje;
     }
-    
+    /**
+     * Modifica la contraseña de un cliente de la base de datos
+     * @param codigo El codigo del cliente
+     * @param contraseña La contraseña del cliente
+     * @return Mensaje o error
+     */
     public String modificarContraseña(String codigo, String contraseña) {
         String mensaje = "";
         try {
@@ -133,7 +152,11 @@ public class DM_Cliente {
         }
         return mensaje;
     }
-    
+    /**
+     * Elimina un cliente de la base de datos
+     * @param codigo El codigo de el cliente
+     * @return Si se elimino el cliente o no
+     */
     public Boolean eliminarCliente(String codigo) {
         boolean eliminacion = false;
         try {
@@ -153,7 +176,10 @@ public class DM_Cliente {
         }
         return eliminacion;
     }
-    
+    /**
+     * Obtiene los clientes de la base de datos
+     * @return  La lista de clientes
+     */
     public ArrayList<Cliente> verClientes() {
         ArrayList<Cliente> lista = new ArrayList<>();
         try {
@@ -181,7 +207,11 @@ public class DM_Cliente {
             return lista;
         }
     }
-    
+    /**
+     * Obtiene los clientes de la base de datos por nombre
+     * @param nombre El nombre del cliente
+     * @return La lista de clientes
+     */
     public ArrayList<Cliente> verClientesPorNombre(String nombre) {
         ArrayList<Cliente> lista = new ArrayList<>();
         try {
@@ -211,7 +241,11 @@ public class DM_Cliente {
             return lista;
         }
     }
-    
+    /**
+     * Obtiene un cliente por codigo de la base de datos
+     * @param codigo El codigo del cliente
+     * @return El cliente
+     */
     public Cliente verClientePorCodigo(String codigo) {
         Cliente cliente = null;
         try {
@@ -239,7 +273,12 @@ public class DM_Cliente {
             return null;
         }
     }
-    
+    /**
+     * Valida si existe un cliente en la base de datos en base al nombre y dpi
+     * @param nombre el nombre del cliente
+     * @param dpi El dpi del cliente
+     * @return El cliente
+     */
     public Cliente validarCliente(String nombre, String dpi) {
         Cliente cliente = null;
         try {

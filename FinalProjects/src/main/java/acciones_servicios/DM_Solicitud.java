@@ -16,6 +16,12 @@ public class DM_Solicitud {
     public DM_Solicitud() {
     }
 
+    /**
+     * Agrega una solicitud a la base de datos
+     *
+     * @param solicitud La solicitud que se agregara
+     * @return Mensaje o error
+     */
     public String agregarSolicitud(Solicitud solicitud) {
         String mensaje = "";
         if (comprobarSolicitudPendiene(solicitud) == true) {
@@ -43,6 +49,7 @@ public class DM_Solicitud {
                         } else {
                             mensaje = "Fallo al enviar solicitud";
                         }
+                        PrSt.close();
                     } catch (SQLException e) {
                         mensaje = e.toString();
                     }
@@ -52,6 +59,12 @@ public class DM_Solicitud {
         return mensaje;
     }
 
+    /**
+     * Comprueba si la solicitud esta pendiente de ser respondida
+     *
+     * @param solicitud La solicitud que se comprobara
+     * @return Si la solicitud esta pendiente o no
+     */
     public boolean comprobarSolicitudPendiene(Solicitud solicitud) {
         boolean comprobacion = false;
         try {
@@ -67,12 +80,20 @@ public class DM_Solicitud {
             while (rs.next()) {
                 comprobacion = true;
             }
+            PrSt.close();
+            rs.close();
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
         return comprobacion;
     }
 
+    /**
+     * Cuenta el numero de solicitudes que han sido canceladas
+     *
+     * @param solicitud El tipo de solicitud que se contara
+     * @return El numero de veces que ha sido cancelada la solicitud
+     */
     public int contarSolicitudesCanceladas(Solicitud solicitud) {
         int conteo = 0;
         try {
@@ -87,12 +108,20 @@ public class DM_Solicitud {
             while (rs.next()) {
                 conteo++;
             }
+            PrSt.close();
+            rs.close();
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
         return conteo;
     }
 
+    /**
+     * Comprueba si una solicitud ya fue aceptada con anterioridad
+     *
+     * @param solicitud
+     * @return
+     */
     public boolean comprobarSolicitudesAceptadas(Solicitud solicitud) {
         boolean comprobacion = false;
         try {
@@ -106,12 +135,20 @@ public class DM_Solicitud {
             if (rs.next()) {
                 comprobacion = true;
             }
+            PrSt.close();
+            rs.close();
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
         return comprobacion;
     }
 
+    /**
+     * Obtiene las solicitudes pendiendes de un cliente
+     *
+     * @param codigo El codigo del cliente
+     * @return La lista de solicitudes
+     */
     public ArrayList<Solicitud> obtenerSolcitudes(String codigo) {
         ArrayList<Solicitud> lista = new ArrayList<>();
         try {
@@ -131,12 +168,20 @@ public class DM_Solicitud {
                 solicitud.setFecha(rs.getDate("Fecha"));
                 lista.add(solicitud);
             }
+            PrSt.close();
+            rs.close();
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
         return lista;
     }
 
+    /**
+     * Cambia el estado de una solicitud a aceptada
+     *
+     * @param id El id de la solicitud
+     * @return El mensaje de confirmacion
+     */
     public String aceptarSolicitud(int id) {
         String mensaje = "";
         try {
@@ -150,12 +195,19 @@ public class DM_Solicitud {
             } else {
                 mensaje = "Fallo al aceptar solicitud";
             }
+            PrSt.close();
         } catch (SQLException e) {
             mensaje = e.toString();
         }
         return mensaje;
     }
 
+    /**
+     * Cambia el estado de una solicitud a rechazada
+     *
+     * @param id El id de la solicitud
+     * @return El mensaje de confirmacion
+     */
     public String rechazarSolicitud(int id) {
         String mensaje = "";
         try {
@@ -169,12 +221,19 @@ public class DM_Solicitud {
             } else {
                 mensaje = "Fallo al rechazada solicitud";
             }
+            PrSt.close();
         } catch (SQLException e) {
             mensaje = e.toString();
         }
         return mensaje;
     }
 
+    /**
+     * Obtiene las solicitudes realizadas por cliente
+     *
+     * @param codigo El codigo del cliente
+     * @return La lista de solicitudes
+     */
     public ArrayList<Solicitud> verSolicitudesRealizadas(String codigo) {
         ArrayList<Solicitud> lista = new ArrayList<>();
         try {
@@ -193,12 +252,20 @@ public class DM_Solicitud {
                 solicitud.setFecha(rs.getDate("Fecha"));
                 lista.add(solicitud);
             }
+            PrSt.close();
+            rs.close();
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
         return lista;
     }
-    
+
+    /**
+     * Obtiene las solicitudes recibidas de un cliente
+     *
+     * @param codigo El codigo de el cliente
+     * @return La lista de solicitudes
+     */
     public ArrayList<Solicitud> verSolicitudesRecibidas(String codigo) {
         ArrayList<Solicitud> lista = new ArrayList<>();
         try {
@@ -217,6 +284,8 @@ public class DM_Solicitud {
                 solicitud.setFecha(rs.getDate("Fecha"));
                 lista.add(solicitud);
             }
+            PrSt.close();
+            rs.close();
         } catch (SQLException e) {
             System.out.println(e.toString());
         }

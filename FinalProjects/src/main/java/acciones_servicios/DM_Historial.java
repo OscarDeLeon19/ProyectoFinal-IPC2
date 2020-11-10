@@ -16,7 +16,10 @@ public class DM_Historial {
 
     public DM_Historial() {
     }
-
+    /**
+     * Agrega un historial a la base de datos
+     * @param historial El historial que se agregara
+     */
     public void AgregarHistorial(Historial historial) {
         try {
             PreparedStatement PrSt;
@@ -27,11 +30,16 @@ public class DM_Historial {
             PrSt.setString(3, historial.getDescripcion());
             PrSt.setDate(4, historial.getFecha());
             PrSt.executeUpdate();
+            PrSt.close();
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
     }
-
+    /**
+     * Obtiene el historial en base a una entidad
+     * @param entidad La entidad que se desea ver
+     * @return La lista del historial
+     */
     public ArrayList<Historial> verHistorial(String entidad) {
         ArrayList<Historial> lista = new ArrayList<>();
         try {
@@ -50,6 +58,8 @@ public class DM_Historial {
                 historial.setFecha(rs.getDate("Fecha"));
                 lista.add(historial);
             }
+            PrSt.close();
+            rs.close();
         } catch (SQLException e) {
             System.out.println(e.toString());
         }

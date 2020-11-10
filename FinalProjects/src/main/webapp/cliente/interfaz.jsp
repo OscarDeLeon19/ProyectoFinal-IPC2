@@ -36,6 +36,8 @@
                 </div>
             </div>
         </nav>
-        <h1>Bienvenido del Cliente</h1>
+        <div style="width: 1000px; border: 1px solid black; padding: 50px" class="container h-100">
+            <h1>Bienvenido del Cliente</h1>
+        </div>
     </body>
 </html>

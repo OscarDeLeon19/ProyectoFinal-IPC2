@@ -17,7 +17,11 @@ public class DM_Transaccion {
 
     public DM_Transaccion() {
     }
-
+    /**
+     * Agrega una transaccion  a la base de datos.
+     * @param transaccion La transaccion que se agregara
+     * @return Un mensaje o error
+     */
     public String agregarTransaccion(Transaccion transaccion) {
         String mensaje = "";
         try {
@@ -36,12 +40,17 @@ public class DM_Transaccion {
             } else {
                 mensaje = "Fallo al agregar Transaccion Codigo No." + transaccion.getCodigo() + " Para la cuenta: " + transaccion.getCodigo_cuenta();
             }
+            PrSt.close();
         } catch (SQLException e) {
             mensaje = "Fallo al agregar Transaccion Codigo No." + transaccion.getCodigo() + " Para la cuenta: " + transaccion.getCodigo_cuenta() + " Error: " + e.toString();
         }
         return mensaje;
     }
-
+    /**
+     * Obtiene las transacciones mayores a un limite establecido
+     * @param limite El limite que se establecio
+     * @return La lista de transacciones
+     */
     public ArrayList<Transaccion> verTransacciones(Double limite) {
         ArrayList<Transaccion> lista = new ArrayList<>();
         try {
@@ -62,12 +71,18 @@ public class DM_Transaccion {
                 transaccion.setCodigo_cajero(rs.getString("Codigo_Cajero"));
                 lista.add(transaccion);
             }
+            PrSt.close();
+            rs.close();
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
         return lista;
     }
-
+    /**
+     * Obtiene las trasacciones sumadas de cada cuenta en base a un limite
+     * @param limite El limite establecido
+     * @return La lista de transacciones
+     */
     public ArrayList<Transaccion> verTransaccionesSumadas(Double limite) {
         ArrayList<Transaccion> lista = new ArrayList<>();
         try {
@@ -84,12 +99,19 @@ public class DM_Transaccion {
                     lista.add(transaccion);
                 }
             }
+            PrSt.close();
+            rs.close();
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
         return lista;
     }
-
+    /**
+     * Obtiene el listado de cajeros que mas transacciones han realizado en el banco
+     * @param f1 La primera fecha
+     * @param f2 La segunda fecha
+     * @return La lista de transacciones
+     */
     public ArrayList<Transaccion> cajerosConMasTransacciones(String f1, String f2) {
         ArrayList<Transaccion> lista = new ArrayList<>();
         try {
@@ -109,12 +131,18 @@ public class DM_Transaccion {
                 transaccion.setTipo(rs.getString("Nombre"));
                 lista.add(transaccion);
             }
+            PrSt.close();
+            rs.close();
         } catch (Exception e) {
             System.out.println(e.toString());
         }
         return lista;
     }
-
+    /**
+     * Obtiene el historial de transacciones de un cliente en base a su nombre
+     * @param nombre El nombre del cliente
+     * @return La lista de transacciones
+     */
     public ArrayList<Transaccion> historalTransacciones(String nombre) {
         ArrayList<Transaccion> lista = new ArrayList<>();
         try {
@@ -141,7 +169,12 @@ public class DM_Transaccion {
         }
         return lista;
     }
-
+    /**
+     * Obtiene los depositos y retiros hechos por un cajero en el dia
+     * @param codigo_cajero El codigo del cajero
+     * @param fecha La fecha del dia actual
+     * @return La lista de transacciones
+     */
     public ArrayList<Transaccion> verDepositosRetiros(String codigo_cajero, Date fecha) {
         ArrayList<Transaccion> lista = new ArrayList<>();
         try {
@@ -163,12 +196,18 @@ public class DM_Transaccion {
                 transaccion.setCodigo_cajero(rs.getString("Codigo_Cajero"));
                 lista.add(transaccion);
             }
+            PrSt.close();
+            rs.close();
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
         return lista;
     }
-
+    /**
+     * Obtiene el balance de una lista de transacciones
+     * @param lista La lista de transacciones
+     * @return El balance
+     */    
     public double obtenerBalance(ArrayList<Transaccion> lista) {
         double deposito = 0;
         double retiro = 0;
@@ -186,7 +225,13 @@ public class DM_Transaccion {
         double balance = deposito - retiro;
         return balance;
     }
-
+    /**
+     * Obtiene la lista de transacciones por fecha de un cajero
+     * @param codigo_cajero El codigo del cajero
+     * @param f1 La primera fecha
+     * @param f2 La segunda fecha
+     * @return La lista de transacciones
+     */
     public ArrayList<Transaccion> verListaDeTransacciones(String codigo_cajero, String f1, String f2) {
         ArrayList<Transaccion> lista = new ArrayList<>();
         try {
@@ -209,12 +254,18 @@ public class DM_Transaccion {
                 transaccion.setMonto(balance);
                 lista.add(transaccion);
             }
+            PrSt.close();
+            rs.close();
         } catch (Exception e) {
             System.out.println(e.toString());
         }
         return lista;
     }
-
+    /**
+     * Obtiene el balance final de una lista de transacciones
+     * @param lista La lista de transacciones
+     * @return El balance final
+     */
     public double obtenerBalanceFinal(ArrayList<Transaccion> lista) {
         double balance = 0;
         for (int i = 0; i < lista.size(); i++) {
@@ -223,7 +274,11 @@ public class DM_Transaccion {
         }
         return balance;
     }
-
+    /**
+     * Obtiene las ultimas 15 mas grandes transacciones realizadas por un cliente
+     * @param codigo El codigo de el cliente
+     * @return La lista de transacciones
+     */
     public ArrayList<Transaccion> verUltimas15Transacciones(String codigo) {
         ArrayList<Transaccion> lista = new ArrayList<>();
         try {
@@ -243,12 +298,20 @@ public class DM_Transaccion {
                 transaccion.setMonto(rs.getDouble("Monto"));
                 lista.add(transaccion);
             }
+            PrSt.close();
+            rs.close();
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
         return lista;
     }
-
+    /**
+     * Obtiene las transacciones de un cliente en un intervalo
+     * @param codigo El codigo del cliente
+     * @param f1 La primera fecha
+     * @param f2 La segunda fecha
+     * @return 
+     */
     public ArrayList<Transaccion> verTransaccionesEnIntervalo(String codigo, String f1, String f2) {
         ArrayList<Transaccion> lista = new ArrayList<>();
         try {
@@ -272,12 +335,19 @@ public class DM_Transaccion {
                 transaccion.setMonto(rs.getDouble("Monto"));
                 lista.add(transaccion);
             }
+            PrSt.close();
+            rs.close();
         } catch (Exception e) {
             System.out.println(e.toString());
         }
         return lista;
     }
-
+    /**
+     * Obtiene las transacciones de una cueta
+     * @param codigo_cuenta El codigo de la cuenta
+     * @param f1 La primera fecha
+     * @return La lista de transacciones
+     */
     public ArrayList<Transaccion> obtenerTransaccionesDeCuenta(String codigo_cuenta, String f1) {
         ArrayList<Transaccion> lista = new ArrayList<>();
         try {
@@ -302,6 +372,8 @@ public class DM_Transaccion {
                 transaccion.setMonto(rs.getDouble("Monto"));
                 lista.add(transaccion);
             }
+            PrSt.close();
+            rs.close();
         } catch (Exception e) {
             System.out.println(e.toString());
         }
