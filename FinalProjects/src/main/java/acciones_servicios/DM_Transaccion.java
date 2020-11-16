@@ -51,7 +51,7 @@ public class DM_Transaccion {
      * @param limite El limite que se establecio
      * @return La lista de transacciones
      */
-    public ArrayList<Transaccion> verTransacciones(Double limite) {
+    public ArrayList<Transaccion> verTransacciones(double limite) {
         ArrayList<Transaccion> lista = new ArrayList<>();
         try {
             PreparedStatement PrSt;
@@ -83,7 +83,7 @@ public class DM_Transaccion {
      * @param limite El limite establecido
      * @return La lista de transacciones
      */
-    public ArrayList<Transaccion> verTransaccionesSumadas(Double limite) {
+    public ArrayList<Transaccion> verTransaccionesSumadas(double limite) {
         ArrayList<Transaccion> lista = new ArrayList<>();
         try {
             PreparedStatement PrSt;
@@ -214,9 +214,9 @@ public class DM_Transaccion {
 
         for (int i = 0; i < lista.size(); i++) {
             Transaccion transaccion = lista.get(i);
-            if ("CREDITO".equals(transaccion.getTipo())) {
+            if ("CREDITO".equals(transaccion.getTipo().toUpperCase())) {
                 deposito = deposito + transaccion.getMonto();
-            } else if ("DEBITO".equals(transaccion.getTipo())) {
+            } else if ("DEBITO".equals(transaccion.getTipo().toUpperCase())) {
                 retiro = retiro + transaccion.getMonto();
             }
         }

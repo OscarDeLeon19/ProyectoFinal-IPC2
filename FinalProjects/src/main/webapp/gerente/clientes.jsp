@@ -46,7 +46,7 @@
         </div>   
         <div style="width: 1000px; border: 1px solid black; padding: 50px" class="container h-100">
             <form action ="FuncionesGerente" method = "POST" class="form-group">
-                <h3>Cliente de la empresa</h3>
+                <h3>Clientes de la empresa</h3>
                 <div class="form-group">
                     <label>Nombre del cliente</label>
                     <input type = "text" name = "nomCliente" value="${cliente}" class="form-control">

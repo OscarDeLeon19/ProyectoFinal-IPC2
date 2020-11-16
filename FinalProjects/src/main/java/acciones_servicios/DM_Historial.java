@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import principal.Conexion;
-import principal.Encriptar;
+import principal.Encriptacion;
 import servicios.Historial;
 
 public class DM_Historial {

@@ -44,7 +44,6 @@
                 <h3>Nuevo Cliente</h3>
                 <small class="form-text text-muted"> Es obligatorio subir el dpi del cliente </small>
                 <div class="form-group">
-                    <label>Codigo del cliente</label>
                     <input type = "file" name = "pdf_dpi"  class="form-control">
                 </div>
                 <div class="form-group">

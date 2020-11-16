@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import principal.Conexion;
-import principal.Encriptar;
+import principal.Encriptacion;
 import servicios.Historial;
 import usuarios.Cajero;
 
@@ -15,14 +15,16 @@ public class DM_Cajero {
 
     private Conexion clase = new Conexion();
     private Connection conexion = clase.getConnection();
-    private Encriptar encriptar = new Encriptar();
+    private Encriptacion encriptar = new Encriptacion();
     private java.util.Date fechaActual = new java.util.Date();
     private DM_Historial dmhis = new DM_Historial();
 
     public DM_Cajero() {
     }
+
     /**
      * Agrega un cajero a la base de datos
+     *
      * @param cajero El cajero que se va a agregar
      * @return Mensaje o error
      */
@@ -52,8 +54,10 @@ public class DM_Cajero {
         }
         return mensaje;
     }
+
     /**
      * Comprueba que un cajero exista en la base de datos
+     *
      * @param codigo El codigo del cajero
      * @param password La contraseña del cajero
      * @return El cajero
@@ -70,14 +74,16 @@ public class DM_Cajero {
             PrSt.setString(2, contraseña);
             rs = PrSt.executeQuery();
             while (rs.next()) {
-                cajero = new Cajero();
-                cajero.setCodigo(rs.getString("Codigo"));
-                cajero.setNombre(rs.getString("Nombre"));
-                cajero.setTurno(rs.getString("Turno"));
-                cajero.setDpi(rs.getString("DPI"));
-                cajero.setDireccion(rs.getString("Direccion"));
-                cajero.setSexo(rs.getString("Sexo"));
-                cajero.setContraseña(rs.getString("Contraseña"));
+                if (!"101".equals(rs.getString("Codigo"))) {
+                    cajero = new Cajero();
+                    cajero.setCodigo(rs.getString("Codigo"));
+                    cajero.setNombre(rs.getString("Nombre"));
+                    cajero.setTurno(rs.getString("Turno"));
+                    cajero.setDpi(rs.getString("DPI"));
+                    cajero.setDireccion(rs.getString("Direccion"));
+                    cajero.setSexo(rs.getString("Sexo"));
+                    cajero.setContraseña(rs.getString("Contraseña"));
+                }
             }
             PrSt.close();
             rs.close();
@@ -86,8 +92,11 @@ public class DM_Cajero {
             return null;
         }
     }
+
     /**
-     * Modifica los datos de un cajero en la base de datos. Guarda un historial en la base de datos
+     * Modifica los datos de un cajero en la base de datos. Guarda un historial
+     * en la base de datos
+     *
      * @param cajero El cajero que se modificara
      * @param codigo El codigo del gerente
      * @return Mensaje o error
@@ -123,8 +132,10 @@ public class DM_Cajero {
         }
         return mensaje;
     }
+
     /**
      * Modifica la contraseña de un cajero en la base de datos
+     *
      * @param codigo El codigo de el cajero
      * @param contraseña La contraseña nueva
      * @return Mensaje o error
@@ -149,8 +160,10 @@ public class DM_Cajero {
         }
         return mensaje;
     }
+
     /**
      * Elimina un cajero de la base de datos
+     *
      * @param codigo El codigo del cajero
      * @return mensaje o error
      */
@@ -173,8 +186,10 @@ public class DM_Cajero {
         }
         return eliminacion;
     }
+
     /**
      * Obtiene los cajeros de la base de datos
+     *
      * @return La lista de cajeros
      */
     public ArrayList<Cajero> verCajeros() {
@@ -205,8 +220,10 @@ public class DM_Cajero {
             return lista;
         }
     }
+
     /**
      * Obtiene a los cajeros en base al nombre
+     *
      * @param nombre El nombre del cajero
      * @return La lista del cajeros
      */
@@ -240,10 +257,12 @@ public class DM_Cajero {
             return lista;
         }
     }
+
     /**
      * Obtiene un cajero de la base de datos en base al codigo
+     *
      * @param codigo El codigo del cajero
-     * @return El cajero 
+     * @return El cajero
      */
     public Cajero verCajeroPorCodigo(String codigo) {
         Cajero cajero = null;

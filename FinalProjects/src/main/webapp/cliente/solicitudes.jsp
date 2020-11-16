@@ -46,7 +46,7 @@
         </div>  
         <div style="width: 1000px; border: 1px solid black" class="container h-100">
             <h1>Solicitudes de asociacion pendientes</h1>
-            <small class="form-text text-muted"> Para ver la informacion del solicitante, presionar su codigo </small>
+            <small class="form-text text-muted"> Para ver la informacion del solicitante, presiona su codigo </small>
             <table class="table">
                 <thead>
                     <tr>

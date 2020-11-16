@@ -55,7 +55,7 @@
         </div>
         <div style="width: 1000px; border: 1px solid black" class="container h-100">
             <h2>Cuenta con mas dinero: ${cuenta}</h2>
-            <h2>Credito de la cuenta: ${credito}</h2>
+            <h2>Credito de la cuenta: Q${credito}</h2>
             <h3>Transacciones de la cuenta </h1>
                 <table class="table">
                     <thead>

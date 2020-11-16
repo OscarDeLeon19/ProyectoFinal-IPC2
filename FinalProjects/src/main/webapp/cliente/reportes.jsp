@@ -38,11 +38,11 @@
         </nav>
         <div style="width: 1000px; border: 1px solid black; padding: 50px" class="container h-100">
             <h1>Reportes del Cliente</h1>
-            <a href="ReportesCliente?accion=Ultima">Las ultimas 15 transacciones mas grandes realizadas</a><br> 
-            <a href="ReportesCliente?accion=Transacciones">Ver Transacciones en intervalo de tiempo</a><br> 
-            <a href="ReportesCliente?accion=VerCuenta">Cuentas con mas dinero</a><br> 
-            <a href="ReportesCliente?accion=Realizadas">Historial de solicitudes realizadas</a><br>
-            <a href="ReportesCliente?accion=Recibidas">Historial de solicitudes recibidas</a><br>
+            <a class="btn btn-primary btn-lg btn-block" href="ReportesCliente?accion=Ultima">Las ultimas 15 transacciones mas grandes realizadas</a><br> 
+            <a class="btn btn-primary btn-lg btn-block" href="ReportesCliente?accion=Transacciones">Ver Transacciones en intervalo de tiempo</a><br> 
+            <a  class="btn btn-primary btn-lg btn-block" href="ReportesCliente?accion=VerCuenta">Cuentas con mas dinero</a><br> 
+            <a class="btn btn-primary btn-lg btn-block" href="ReportesCliente?accion=Realizadas">Historial de solicitudes realizadas</a><br>
+            <a class="btn btn-primary btn-lg btn-block" href="ReportesCliente?accion=Recibidas">Historial de solicitudes recibidas</a><br>
         </div>
     </body>
 </html>

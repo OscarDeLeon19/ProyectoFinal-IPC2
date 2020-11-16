@@ -37,7 +37,7 @@
             </div>
         </nav>
         <div style="width: 1000px; border: 1px solid black; padding: 50px" class="container h-100">
-            <h1>Bienvenido del Cliente</h1>
+            <h1>Bienvenido ${login_cliente.getNombre()}</h1>
         </div>
     </body>
 </html>

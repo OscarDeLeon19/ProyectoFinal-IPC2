@@ -38,8 +38,8 @@
         </nav>
         <div  style="width: 1000px; border: 1px solid black; padding: 50px" class="container h-100">
             <h1>Reportes que puede realizar el cajero</h1>
-            <a href="ReportesCajero?accion=Dia">Retiros y transacciones realizadas en el dia</a><br> 
-            <a href="ReportesCajero?accion=Trasaccion">Ver Transacciones realizadas en intervalo de tiempo</a><br> 
+            <a class="btn btn-primary btn-lg btn-block"  href="ReportesCajero?accion=Dia">Retiros y transacciones realizadas en el dia</a><br> 
+            <a class="btn btn-primary btn-lg btn-block" href="ReportesCajero?accion=Trasaccion">Ver Transacciones realizadas en intervalo de tiempo</a><br> 
         </div>
     </body>
 </html>

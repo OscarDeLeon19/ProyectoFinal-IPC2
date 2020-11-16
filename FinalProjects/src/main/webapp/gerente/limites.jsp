@@ -45,11 +45,11 @@
                 <small class="form-text text-muted"> El segundo limite (Transacciones sumadas) debe ser mayor al primer limite </small>
                 <div class="form-group">
                     <label>Limite para transacciones</label>
-                    <input type = "text" name = "lim1" value="${limite1}" class="form-control">
+                    <input type = "number" name = "lim1" value="${limite1}" class="form-control">
                 </div>
                 <div class="form-group">
                     <label>Limite para transacciones sumadas</label>
-                    <input type = "text" name = "lim2" value="${limite2}" class="form-control">
+                    <input type = "number" name = "lim2" value="${limite2}" class="form-control">
                 </div> 
                 <div class="form-group">
                     <input type="submit" name ="accion" value="Ingresar Limites" class="btn btn-primary">

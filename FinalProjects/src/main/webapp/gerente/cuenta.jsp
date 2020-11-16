@@ -49,7 +49,7 @@
                 </div>
                 <div class="form-group">
                     <label>Monto Inicial</label>
-                    <input type = "text" name = "monto"  class="form-control" placeholder="Q.">
+                    <input type = "number" name = "monto"  class="form-control" placeholder="Q.">
                 </div>
                 <div class="form-group">
                     <label>Codigo del cliente</label>

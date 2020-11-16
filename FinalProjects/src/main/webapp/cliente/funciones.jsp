@@ -37,11 +37,11 @@
             </div>
         </nav>
         <div  style="width: 1000px; border: 1px solid black; padding: 50px" class="container h-100">
-            <h1>Funciones que puede realizar el cliente</h1>
-            <a href="FuncionesCliente?accion=Estado">Ver Estado de Cuenta</a><br> 
-            <a href="FuncionesCliente?accion=Asociar">Asociar Cuenta</a><br> 
-            <a href="FuncionesCliente?accion=Solicitudes">Ver Solicitudes de Asociacion</a><br> 
-            <a href="FuncionesCliente?accion=Transferencias">Transferir Dinero</a><br> 
+            <h1>Funciones que puedes realizar</h1>
+            <a class="btn btn-primary btn-lg btn-block" href="FuncionesCliente?accion=Estado">Ver Estado de Cuenta</a><br> 
+            <a class="btn btn-primary btn-lg btn-block" href="FuncionesCliente?accion=Asociar">Asociar Cuenta</a><br> 
+            <a class="btn btn-primary btn-lg btn-block" href="FuncionesCliente?accion=Solicitudes">Ver Solicitudes de Asociacion</a><br> 
+            <a class="btn btn-primary btn-lg btn-block" href="FuncionesCliente?accion=Transferencias">Transferencias </a><br> 
         </div>
     </body>
 </html>

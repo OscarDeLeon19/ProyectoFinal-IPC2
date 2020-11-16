@@ -40,7 +40,7 @@
                 </div>
             </form>
         </div>
-        <%            }
+        <%            } else {
         %>
         <div class="alert alert-danger" role="alert">
             ${error}
@@ -131,6 +131,7 @@
             </form>
         </div>
         <%
+                }
             }
         %>
     </body>

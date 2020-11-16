@@ -37,9 +37,9 @@
             </div>
         </nav>
         <div  style="width: 1000px; border: 1px solid black; padding: 50px" class="container h-100">
-            <h1>Funciones que puede realizar el cajero</h1>
-            <a href="FuncionesCajero?accion=Deposito">Realizar deposito</a><br> 
-            <a href="FuncionesCajero?accion=Retiro">Realizar retiro</a><br> 
+            <h1>Funciones que puedes realizar</h1>
+            <a class="btn btn-primary btn-lg btn-block"  href="FuncionesCajero?accion=Deposito">Realizar deposito</a><br> 
+            <a class="btn btn-primary btn-lg btn-block"  href="FuncionesCajero?accion=Retiro">Realizar retiro</a><br> 
         </div>
     </body>
 </html>

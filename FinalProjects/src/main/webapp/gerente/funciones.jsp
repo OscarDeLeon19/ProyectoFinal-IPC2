@@ -38,11 +38,11 @@
         </nav>
         <div  style="width: 1000px; border: 1px solid black; padding: 50px" class="container h-100">
             <h1>Funciones que puede realizar el gerente</h1>
-            <a href="FuncionesGerente?accion=CrearCuenta">Crear Cuenta para Cliente</a><br>
-            <a href="FuncionesGerente?accion=Gerentes">Gerentes de la empresa</a><br>
-            <a href="FuncionesGerente?accion=Cajeros">Cajeros de la empresa</a><br>
-            <a href="FuncionesGerente?accion=Clientes">Clientes de la empresa</a><br>
-            <a href="FuncionesGerente?accion=Limites">Ingresar limites para reportes</a><br>
+            <a class="btn btn-primary btn-lg btn-block" href="FuncionesGerente?accion=CrearCuenta">Crear Cuenta para Cliente</a><br>
+            <a class="btn btn-primary btn-lg btn-block" href="FuncionesGerente?accion=Gerentes">Gerentes de la empresa</a><br>
+            <a class="btn btn-primary btn-lg btn-block" href="FuncionesGerente?accion=Cajeros">Cajeros de la empresa</a><br>
+            <a class="btn btn-primary btn-lg btn-block" href="FuncionesGerente?accion=Clientes">Clientes de la empresa</a><br>
+            <a class="btn btn-primary btn-lg btn-block" href="FuncionesGerente?accion=Limites">Ingresar limites para reportes</a><br>
         </div>
         <div id = "fueraHorario" hidden>
             <hi>

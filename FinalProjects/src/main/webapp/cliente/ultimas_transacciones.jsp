@@ -42,7 +42,7 @@
             ArrayList<Transaccion> lista = (ArrayList<Transaccion>) request.getSession().getAttribute("transacciones");
         %>
         <div style="width: 1000px; border: 1px solid black" class="container h-100">
-            <h1>Ulimas 15 transacciones mas grandes realizadas </h1>
+            <h1>Ultimas 15 transacciones mas grandes realizadas </h1>
             <table class="table">
                 <thead>
                     <tr>

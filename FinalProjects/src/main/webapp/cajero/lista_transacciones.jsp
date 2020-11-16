@@ -60,7 +60,7 @@
         </div>
         <div style="width: 1000px; border: 1px solid black" class="container h-100">
             <h2>Transacciones realizadas durante el intervalo de tiempo</h2>
-            <h2>Balance Final: ${balance}</h2>
+            <h2>Balance Final: Q${balance}</h2>
             <table class="table">
                 <thead>
                     <tr>

@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import principal.Conexion;
-import principal.Encriptar;
+import principal.Encriptacion;
 import servicios.Historial;
 import usuarios.Cajero;
 import usuarios.Cliente;
@@ -16,7 +16,7 @@ public class DM_Cliente {
 
     private Conexion clase = new Conexion();
     private Connection conexion = clase.getConnection();
-    private Encriptar encriptar = new Encriptar();
+    private Encriptacion encriptar = new Encriptacion();
     private java.util.Date fechaActual = new java.util.Date(); 
     private DM_Historial dmhis = new DM_Historial();
 

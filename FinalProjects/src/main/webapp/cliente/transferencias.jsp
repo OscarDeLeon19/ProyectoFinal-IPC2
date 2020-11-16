@@ -49,7 +49,7 @@
                         <th scope="col">Codigo de la cuenta</th>
                         <th scope="col">Fecha de creacion</th> 
                         <th scope="col">Credito</th> 
-                        <th scope="col">Codigo de la cuenta</th>
+                        <th scope="col">Codigo del cliente</th>
                     </tr>
                 </thead>
                 <tbody>

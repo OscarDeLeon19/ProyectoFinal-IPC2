@@ -54,8 +54,8 @@
                 <div class="form-group">
                     <label>Turno</label>
                     <select class="form-control" name ="turnoGerente">
-                        <option>MATUTINO</option>
-                        <option>VESPERTINO</option>
+                        <option>Matutino</option>
+                        <option>Vespertino</option>
                     </select>
                 </div> 
                 <div class="form-group">

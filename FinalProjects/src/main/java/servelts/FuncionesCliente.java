@@ -162,49 +162,53 @@ public class FuncionesCliente extends HttpServlet {
             String codigo = request.getParameter("cuenta");
             String dinero = request.getParameter("monto");
             String codigo2 = request.getParameter("asociada");
-            try {
-                String hora = (String.valueOf(request.getSession().getAttribute("hora")));
-                Cuenta cuenta1 = dmcue.obtenerCuenta(codigo);
-                Cuenta cuenta2 = dmcue.obtenerCuenta(codigo2);
-                double monto = Double.parseDouble(dinero);
-                if (monto < 1) {
-                    mensaje = "No puedes ingresar un negativo o cero";
-                } else {
-                    if (monto > cuenta1.getCredito()) {
-                        mensaje = "La cuenta no tiene el dinero suficiente";
+            if (codigo.equals(codigo2)) {
+                mensaje = "No te puedes transferir a la misma cuenta";
+            } else {
+                try {
+                    String hora = (String.valueOf(request.getSession().getAttribute("hora")));
+                    Cuenta cuenta1 = dmcue.obtenerCuenta(codigo);
+                    Cuenta cuenta2 = dmcue.obtenerCuenta(codigo2);
+                    double monto = Double.parseDouble(dinero);
+                    if (monto < 1) {
+                        mensaje = "No puedes ingresar un negativo o cero";
                     } else {
-                        java.util.Date d = new java.util.Date();
-                        java.sql.Date fecha = new java.sql.Date(d.getTime());
-                        Transaccion transaccion = new Transaccion();
-                        transaccion.setCodigo_cuenta(cuenta2.getCodigo());
-                        transaccion.setFecha(fecha);
-                        transaccion.setHora(hora + ":00");
-                        transaccion.setTipo("CREDITO");
-                        transaccion.setMonto(monto);
-                        transaccion.setCodigo_cajero("101");
-                        String m = dmtra.agregarTransaccion(transaccion);
-                        System.out.println(m);
-                        if (m.startsWith("Agregada")) {
-                            dmcue.realizarDeposito(cuenta2.getCodigo(), monto);
-                            Transaccion transaccion2 = new Transaccion();
-                            transaccion2.setCodigo_cuenta(cuenta1.getCodigo());
-                            transaccion2.setFecha(fecha);
-                            transaccion2.setHora(hora + ":00");
-                            transaccion2.setTipo("DEBITO");
-                            transaccion2.setMonto(monto);
-                            transaccion2.setCodigo_cajero("101");
-                            String p = dmtra.agregarTransaccion(transaccion2);
-                            if (p.startsWith("Agregada")) {
-                                System.out.println(p);
-                                double dinero_nuevo = cuenta1.getCredito() - monto;
-                                dmcue.realizarRetiro(cuenta1.getCodigo(), dinero_nuevo);
-                                mensaje = "Transferencia exitosa";
+                        if (monto > cuenta1.getCredito()) {
+                            mensaje = "La cuenta no tiene el dinero suficiente";
+                        } else {
+                            java.util.Date d = new java.util.Date();
+                            java.sql.Date fecha = new java.sql.Date(d.getTime());
+                            Transaccion transaccion = new Transaccion();
+                            transaccion.setCodigo_cuenta(cuenta2.getCodigo());
+                            transaccion.setFecha(fecha);
+                            transaccion.setHora(hora + ":00");
+                            transaccion.setTipo("CREDITO");
+                            transaccion.setMonto(monto);
+                            transaccion.setCodigo_cajero("101");
+                            String m = dmtra.agregarTransaccion(transaccion);
+                            System.out.println(m);
+                            if (m.startsWith("Agregada")) {
+                                dmcue.realizarDeposito(cuenta2.getCodigo(), monto);
+                                Transaccion transaccion2 = new Transaccion();
+                                transaccion2.setCodigo_cuenta(cuenta1.getCodigo());
+                                transaccion2.setFecha(fecha);
+                                transaccion2.setHora(hora + ":00");
+                                transaccion2.setTipo("DEBITO");
+                                transaccion2.setMonto(monto);
+                                transaccion2.setCodigo_cajero("101");
+                                String p = dmtra.agregarTransaccion(transaccion2);
+                                if (p.startsWith("Agregada")) {
+                                    System.out.println(p);
+                                    double dinero_nuevo = cuenta1.getCredito() - monto;
+                                    dmcue.realizarRetiro(cuenta1.getCodigo(), dinero_nuevo);
+                                    mensaje = "Transferencia exitosa";
+                                }
                             }
                         }
                     }
+                } catch (Exception e) {
+                    mensaje = e.toString();
                 }
-            } catch (Exception e) {
-                mensaje = e.toString();
             }
             request.getSession().setAttribute("cuenta", codigo);
             request.getSession().setAttribute("monto", dinero);

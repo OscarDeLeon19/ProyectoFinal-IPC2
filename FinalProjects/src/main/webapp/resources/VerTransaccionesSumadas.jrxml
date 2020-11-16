@@ -35,7 +35,7 @@
 				<staticText>
 					<reportElement style="SubTitle" x="0" y="66" width="360" height="29" forecolor="#FCFAFA" uuid="8978eac3-c578-41c9-837e-48d2b0184642"/>
 					<textElement>
-						<font size="22" isBold="false"/>
+						<font size="20" isBold="false"/>
 					</textElement>
 					<text><![CDATA[Transacciones sumadas de cada cuenta]]></text>
 				</staticText>

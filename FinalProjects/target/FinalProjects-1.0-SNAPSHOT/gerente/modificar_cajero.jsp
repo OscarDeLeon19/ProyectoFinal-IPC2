@@ -14,7 +14,7 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
         <script src="gerente/accionesJS/funciones.js"></script>
-        <title>Modificar Gerente</title>
+        <title>Modificar Cajero</title>
     </head>
     <body>
         <nav class="navbar bg-info">
@@ -42,7 +42,7 @@
         </div>            
         <div style="width: 1000px; border: 1px solid black; padding: 50px" class="container h-100">
             <form action ="FuncionesGerente" method = "POST" class="form-group">
-                <h3>Nuevo Cajero</h3>
+                <h3>Modificacion de datos</h3>
                 <small class="form-text text-muted"> Todos los campos son obligatorios </small>
                 <div class="form-group">
                     <input type = "hidden" name = "codigoCajero" value="${modCajero.getCodigo()}" class="form-control">
@@ -57,8 +57,8 @@
                 <div class="form-group">
                     <label>Turno</label>
                     <select class="form-control" name ="turnoCajero">
-                        <option>MATUTINO</option>
-                        <option>VESPERTINO</option>
+                        <option>Matutino</option>
+                        <option>Vespertino</option>
                     </select>
                 </div> 
                 <div class="form-group">

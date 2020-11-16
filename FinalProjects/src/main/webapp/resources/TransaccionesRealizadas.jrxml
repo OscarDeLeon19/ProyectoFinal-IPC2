@@ -75,7 +75,7 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3cff8c41-c3bc-4d1c-a617-f3f8c3f3306f"/>
 				</reportElement>
 				<textElement>
-					<font size="13" isBold="false"/>
+					<font size="11" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Codigo de la transaccion]]></text>
 			</staticText>

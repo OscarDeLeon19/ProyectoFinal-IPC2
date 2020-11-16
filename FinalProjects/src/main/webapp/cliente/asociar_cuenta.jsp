@@ -42,6 +42,7 @@
         <div style="width: 1000px; border: 1px solid black; padding: 50px" class="container h-100">
             <form action ="FuncionesCliente" method = "POST" class="form-group">
                 <h3>Asociar Cuenta</h3>
+                <small class="form-text text-muted"> Todos los campos son obligatorios </small>
                 <div class="form-group">
                     <label>Nombre del propietario</label>
                     <input type = "text" name = "nombre" value="${nombre}" class="form-control">
@@ -54,6 +55,7 @@
                     <label>Codigo de la cuenta del propietario</label>
                     <input type = "text" name = "codigo" value="${codigo}" class="form-control">
                 </div>
+                <small class="form-text text-muted"> Solo puedes solicitar una asociacion tres veces. </small>
                 <div class="form-group">
                     <input type="submit" name ="accion" value="Asociar Cuenta" class="btn btn-primary">
                 </div>

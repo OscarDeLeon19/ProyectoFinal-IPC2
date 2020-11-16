@@ -44,7 +44,7 @@
         %> 
         <div style="width: 1000px; border: 1px solid black" class="container h-100">
             <h2>Transacciones sumadas en cada cuenta</h2>
-            <h2>Limite establecido: ${limite2}</h2>
+            <h2>Limite establecido: Q${limite2}</h2>
             <table class="table">
                 <thead>
                     <tr>

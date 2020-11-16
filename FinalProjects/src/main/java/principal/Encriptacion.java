@@ -6,9 +6,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 
-public class Encriptar {
+public class Encriptacion {
 
-    public Encriptar() {
+    public Encriptacion() {
     }
     
     /**

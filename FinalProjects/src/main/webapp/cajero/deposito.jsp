@@ -48,7 +48,7 @@
                 </div>
                 <div class="form-group">
                     <label>Monto a depositar</label>
-                    <input type = "text" name = "monto" value="${monto}" class="form-control">
+                    <input type = "number" name = "monto" value="${monto}" class="form-control">
                 </div>
                 <div class="form-group">
                     <input type="submit" name ="accion" value="Realizar Deposito" class="btn btn-primary">

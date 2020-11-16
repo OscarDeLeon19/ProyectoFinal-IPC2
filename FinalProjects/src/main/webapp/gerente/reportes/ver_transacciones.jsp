@@ -43,7 +43,7 @@
         %> 
         <div style="width: 1000px; border: 1px solid black" class="container h-100">
             <h2>Transacciones mayores al limite establecido</h2>
-            <h2>Limite Establecido: ${limite1}</h2>
+            <h2>Limite Establecido: Q${limite1}</h2>
             <table class="table">
                 <thead>
                     <tr>

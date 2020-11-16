@@ -44,7 +44,6 @@
             <form action ="FuncionesGerente" method = "POST" class="form-group">
                 <h3>Modifica tus datos</h3>
                 <div class="form-group">
-                    <label>Codigo del gerente</label>
                     <input type = "hidden" name = "codigoGerente" value="${login_gerente.getCodigo()}" class="form-control">
                 </div>
                 <div class="form-group">
@@ -54,8 +53,8 @@
                 <div class="form-group">
                     <label>Turno</label>
                     <select class="form-control" name ="turnoGerente" value="${login_gerente.getTurno()}">
-                        <option>MATUTINO</option>
-                        <option>VESPERTINO</option>
+                        <option>Matutino</option>
+                        <option>Vespertino</option>
                     </select>
                 </div> 
                 <div class="form-group">
@@ -84,7 +83,6 @@
             <form action ="FuncionesGerente" method = "POST" class="form-group">
                 <h3>Modificar contraseña</h3>
                 <div class="form-group">
-                    <label>Codigo del gerente</label>
                     <input type = "hidden" name = "codigoGerente" value="${login_gerente.getCodigo()}" class="form-control">
                 </div>
                 <div class="form-group">
