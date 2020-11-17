@@ -1,5 +1,3 @@
-DROP SCHEMA ProyectoFinal;
-
 CREATE DATABASE ProyectoFinal;
 
 USE ProyectoFinal;
@@ -33,6 +31,7 @@ CREATE TABLE Cliente(
 	Nacimiento DATE NOT NULL,
 	Direccion VARCHAR(100) NOT NULL,
 	Sexo VARCHAR(15) NOT NULL,
+    	PDF_DPI  VARCHAR(150) NOT NULL,
 	Contraseña VARCHAR(50),
 	PRIMARY KEY (Codigo)
 );
@@ -69,3 +68,17 @@ CREATE TABLE Historial(
 	FOREIGN KEY (Codigo_Gerente) REFERENCES Gerente(Codigo) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TABLE Solicitud(
+	ID INT(20) NOT NULL AUTO_INCREMENT,
+    	Codigo_ClienteS VARCHAR(20) NOT NULL,
+    	Codigo_ClienteR VARCHAR(20) NOT NULL,
+    	Codigo_Cuenta VARCHAR(20) NOT NULL,
+    	Estado VARCHAR(20) NOT NULL,
+    	Fecha DATE NOT NULL,
+    	PRIMARY KEY (ID),
+    	FOREIGN KEY (Codigo_ClienteS) REFERENCES Cliente(Codigo) ON DELETE CASCADE ON UPDATE CASCADE,
+    	FOREIGN KEY (Codigo_ClienteR) REFERENCES Cliente(Codigo) ON DELETE CASCADE ON UPDATE CASCADE,
+    	FOREIGN KEY (Codigo_Cuenta) REFERENCES Cuenta(Codigo) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+INSERT INTO Cajero VALUES("101", "Banca Virtual", "TODA HORA","101","xxxxx","xxxxx","xxxxxxxxx");

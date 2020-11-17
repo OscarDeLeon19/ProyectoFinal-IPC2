@@ -55,6 +55,26 @@
                 <CREADA>2015-08-17</CREADA>
                 <CREDITO>2000.12</CREDITO>
             </CUENTA>
+            <CUENTA>
+                <CODIGO>11112</CODIGO>
+                <CREADA>2015-08-17</CREADA>
+                <CREDITO>2000.12</CREDITO>
+            </CUENTA>
+            <CUENTA>
+                <CODIGO>11113</CODIGO>
+                <CREADA>2015-08-17</CREADA>
+                <CREDITO>2000.12</CREDITO>
+            </CUENTA>
+            <CUENTA>
+                <CODIGO>111114</CODIGO>
+                <CREADA>2015-08-17</CREADA>
+                <CREDITO>2000.12</CREDITO>
+            </CUENTA>
+            <CUENTA>
+                <CODIGO>111115</CODIGO>
+                <CREADA>2015-08-17</CREADA>
+                <CREDITO>2000.12</CREDITO>
+            </CUENTA>
         </CUENTAS>
         <PASSWORD>12345</PASSWORD>
     </CLIENTE>

@@ -149,7 +149,6 @@ public class Carga {
                 try {
                     for (int i = 0; i < transacciones.getLength(); i++) {
                         Node nodo = transacciones.item(i);
-                        System.out.println("tran");
                         if (nodo.getNodeType() == Node.ELEMENT_NODE) {
                             Element element = (Element) nodo;
                             String codigo = element.getElementsByTagName("CODIGO").item(0).getTextContent();
